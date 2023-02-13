@@ -18,6 +18,7 @@ if (!function_exists('add_filter')) {
 add_action('plugins_loaded', __NAMESPACE__.'\initialize');
 function initialize()
 {
+    load_plugin_textdomain( 'wp-user-listing', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
     $autoLoad = plugin_dir_path(__FILE__).'vendor/autoload.php';
     if (!class_exists(UserListing::class) && is_readable($autoLoad)) {
         /** @noinspection PhpIncludeInspection */

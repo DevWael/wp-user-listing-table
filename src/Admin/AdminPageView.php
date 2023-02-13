@@ -10,7 +10,7 @@ class AdminPageView
 {
     public function name(): string
     {
-        return 'User Listing Settings';
+        return esc_html__('User Listing Settings', 'wp-user-listing');
     }
 
     public function cap(): string
@@ -40,17 +40,15 @@ class AdminPageView
         <div class="wrap">
             <h2 class="settings__headline"><?php
                 esc_html__('Settings') ?></h2>
-            <form method="post" action="<?php
-            echo esc_url($url) ?>"
-                  class="inpsyde-form" id="inpsyde-form">
+            <form method="post" action="<?php echo esc_url($url) ?>" class="user-listing-form" id="user-listing-form">
 
                 <p class="submit clear">
                     <?php echo $nonce ?>
                     <input type="submit"
                            name="submit"
                            id="submit"
-                           class="inpsyde-form-field__submit"
-                           value="<?php echo esc_attr__('Save Changes', 'inpsyde-google-tag-manager') ?>"
+                           class="user-listing-form-field__submit button button-primary"
+                           value="<?php echo esc_attr__('Save Changes', 'wp-user-listing') ?>"
                     />
                 </p>
             </form>
