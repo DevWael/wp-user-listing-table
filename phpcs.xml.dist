@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<ruleset name="DevWael WP-User-Listing-Table">
+    <file>./src</file>
+    <rule ref="Inpsyde"/>
+</ruleset>
