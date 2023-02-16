@@ -6,9 +6,9 @@ declare(strict_types=1);
 
 namespace WpUserListingTable\FrontEnd\Templates;
 
-class UsersTable
+class UsersTableTemplate
 {
-    public static function templatePath(): string
+    public function templatePath(): string
     {
         $path = PLUGIN_PATH . 'templates/users-table.php';
         $themeFile = get_template_directory() . '/user-listing-table/users-table.php';
@@ -17,5 +17,15 @@ class UsersTable
         }
 
         return $path;
+    }
+
+    public function templateRegex(): string
+    {
+        return '^user-listing-table/?';
+    }
+
+    public function templateQuery(): string
+    {
+        return 'index.php?table_template=user-listing-table';
     }
 }
