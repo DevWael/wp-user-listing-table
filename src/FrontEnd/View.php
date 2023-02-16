@@ -6,19 +6,24 @@ declare(strict_types=1);
 
 namespace WpUserListingTable\FrontEnd;
 
+use WpUserListingTable\FrontEnd\Assets\AssetsLoader;
 use WpUserListingTable\FrontEnd\Templates\UsersTableTemplate;
 
 class View
 {
     private UsersTableTemplate $template;
+    private AssetsLoader $assets;
 
     /**
      * View constructor.
      */
-    public function __construct(UsersTableTemplate $template = null)
+    public function __construct(UsersTableTemplate $template = null, AssetsLoader $assets = null)
     {
         $templateObject = $template ?? new UsersTableTemplate();
         $this->template = \apply_filters('wp_users_table_template_object', $templateObject);
+
+        $assetsObject = $assets ?? new AssetsLoader(PLUGIN_NAME, PLUGIN_VERSION);
+        $this->assets = \apply_filters('wp_users_table_assets_object', $assetsObject);
     }
 
     public function rewriteRule(): void
@@ -48,5 +53,7 @@ class View
         \add_action('init', [$this, 'rewriteRule']);
         \add_filter('query_vars', [$this, 'registerQueryVar']);
         \add_filter('template_include', [$this, 'loadTemplate']);
+        \add_action('wp_enqueue_scripts', [$this->assets, 'loadCSS']);
+        \add_action('wp_enqueue_scripts', [$this->assets, 'loadJS']);
     }
 }
