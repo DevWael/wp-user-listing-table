@@ -15,7 +15,10 @@ if (!function_exists('add_filter')) {
     return;
 }
 
+define('PLUGIN_NAME', 'wp-user-listing');
+define('PLUGIN_VERSION', '1.0.0');
 define('PLUGIN_PATH', plugin_dir_path(__FILE__));
+define('PLUGIN_URI', plugin_dir_url(__FILE__));
 
 add_action('plugins_loaded', __NAMESPACE__.'\initialize');
 function initialize()
