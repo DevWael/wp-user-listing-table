@@ -15,6 +15,8 @@ if (!function_exists('add_filter')) {
     return;
 }
 
+define('PLUGIN_PATH', plugin_dir_path(__FILE__));
+
 add_action('plugins_loaded', __NAMESPACE__.'\initialize');
 function initialize()
 {
