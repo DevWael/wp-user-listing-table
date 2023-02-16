@@ -6,7 +6,7 @@
  * Version: 1.0.0
  * Author: Ahmad Wael
  * Author URI: https://www.bbioon.com
- * License: MIT
+ * License: GPL-2.0+
  */
 
 namespace WpUserListingTable;
