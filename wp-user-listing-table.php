@@ -7,6 +7,7 @@
  * Author: Ahmad Wael
  * Author URI: https://www.bbioon.com
  * License: GPL-2.0+
+ * Text Domain: wp-user-listing
  */
 
 namespace WpUserListingTable;
