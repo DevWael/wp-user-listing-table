@@ -7,6 +7,7 @@ declare(strict_types=1);
 namespace WpUserListingTable;
 
  use WpUserListingTable\Admin\AdminPage;
+ use WpUserListingTable\FrontEnd\View;
 
 class UserListing
 {
@@ -46,5 +47,8 @@ class UserListing
             $adminPage = new AdminPage();
             \add_action('init', [$adminPage, 'init']);
         }
+
+        $frontEnd = new View();
+        $frontEnd->init();
     }
 }
