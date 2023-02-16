@@ -6,18 +6,30 @@ declare(strict_types=1);
 
 namespace WpUserListingTable\Admin;
 
+/**
+ * Class responsible for the options page information.
+ */
 class AdminPageView
 {
+    /**
+     * @return string options page name
+     */
     public function name(): string
     {
         return esc_html__('User Listing Settings', 'wp-user-listing');
     }
 
+    /**
+     * @return string options page access capability
+     */
     public function cap(): string
     {
         return 'manage_options';
     }
 
+    /**
+     * @return string options page slug
+     */
     public function slug(): string
     {
         return 'user_listing_settings';

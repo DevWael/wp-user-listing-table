@@ -6,11 +6,25 @@ declare(strict_types=1);
 
 namespace WpUserListingTable\API;
 
+/**
+ * This class provides the functionality to contact the API to get the users data.
+ */
 class Users
 {
+    /**
+     * @var EndPoint instance of EndPoint class
+     */
     private EndPoint $endPoints;
+
+    /**
+     * @var int user ID
+     */
     private int $id;
 
+    /**
+     * @param EndPoint|null $endPoints instance of EndPoint class
+     * @param int|null $id user ID
+     */
     public function __construct(EndPoint $endPoints = null, int $id = null)
     {
         $this->endPoints = $endPoints ?? new EndPoint();
@@ -18,7 +32,9 @@ class Users
     }
 
     /**
-     * @throws \JsonException
+     * Get list of users data.
+     *
+     * @throws \JsonException if failed to decode the response
      */
     public function users(): array
     {
@@ -28,7 +44,10 @@ class Users
     }
 
     /**
-     * @throws \Exception
+     * Get list of users data.
+     *
+     * @throws \JsonException if failed to decode the response
+     * @throws \InvalidArgumentException if no user ID provided in the instance.
      */
     public function userById(): array
     {
@@ -40,6 +59,14 @@ class Users
         return json_decode($response, true, 512, JSON_THROW_ON_ERROR);
     }
 
+    /**
+     * Make the request to the remote API.
+     *
+     * @param string $requestType set request type to single or list to fetch users.
+     * @return string JSON data from the API.
+     *
+     * @throws \RuntimeException if failed to contact the remote API.
+     */
     private function makeRequest(string $requestType): string
     {
         switch ($requestType) {
@@ -53,9 +80,10 @@ class Users
         }
 
         $response = wp_remote_request($api['url'], [
-            'method' => $api['url'],
+            'method' => $api['url'], //set the request method like (GET, POST, etc)
         ]);
         if (is_wp_error($response)) {
+            //Failed to contact the API
             throw new \RuntimeException($response->get_error_message());
         }
 

@@ -6,9 +6,14 @@ declare(strict_types=1);
 
 namespace WpUserListingTable;
 
- use WpUserListingTable\Admin\AdminPage;
- use WpUserListingTable\FrontEnd\View;
+use WpUserListingTable\Admin\AdminPage;
+use WpUserListingTable\FrontEnd\View;
 
+ /**
+  * The plugin main class that responsible for loading all plugin logic.
+  *
+  * @package WpUserListingTable
+  */
 class UserListing
 {
     // Hold the class instance.
@@ -22,8 +27,9 @@ class UserListing
     }
 
     /**
-     * @return UserListing
+     * Load class singleton instance.
      *
+     * @return UserListing
      */
     public static function instance(): self
     {
@@ -41,13 +47,19 @@ class UserListing
     public function init()
     {
         if (wp_installing()) {
-            return;
+            return; //prevent loading when we are installing WordPress
         }
         if (is_admin()) {
+            /**
+             * Load all admin side logic
+             */
             $adminPage = new AdminPage();
             \add_action('init', [$adminPage, 'init']);
         }
 
+        /**
+         * Load all frontend logic.
+         */
         $frontEnd = new View();
         $frontEnd->init();
     }

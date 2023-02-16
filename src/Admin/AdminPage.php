@@ -6,8 +6,14 @@ declare(strict_types=1);
 
 namespace WpUserListingTable\Admin;
 
+/**
+ * This class is responsible for all the admin side logic
+ */
 class AdminPage
 {
+    /**
+     * @var AdminPageView AdminPageView instance.
+     */
     private AdminPageView $view;
 
     /**
@@ -18,13 +24,16 @@ class AdminPage
         $this->view = $view ?? new AdminPageView();
     }
 
+    /**
+     * @return string print the nonce field to be used in the options page form.
+     */
     private function nonce(): string
     {
         return wp_nonce_field();
     }
 
     /**
-     * @return bool
+     * Register the options page with the WordPress.
      */
     public function register(): bool
     {
@@ -45,10 +54,21 @@ class AdminPage
         return true;
     }
 
+    /**
+     * Save options page fields and settings.
+     *
+     * @return void
+     */
     public function update(): void
     {
+        //todo: to be implemented.
     }
 
+    /**
+     * Hook the functionality to WordPress.
+     *
+     * @return void
+     */
     public function init(): void
     {
         add_action('admin_menu', [$this, 'register']);
