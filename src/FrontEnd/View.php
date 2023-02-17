@@ -56,12 +56,14 @@ class View
     public function rewriteRule(): void
     {
         /**
-         * String Template Regex, see /plugin/src/FrontEnd/Templates/UsersTableTemplate.php
+         * String Template Regex
+         * @see /plugin/src/FrontEnd/Templates/UsersTableTemplate.php
          */
         $regex = \apply_filters('wp_users_table_template_regex', $this->template->templateRegex());
 
         /**
-         * String Template Query, see /plugin/src/FrontEnd/Templates/UsersTableTemplate.php
+         * String Template Query
+         * @see /plugin/src/FrontEnd/Templates/UsersTableTemplate.php
          */
         $query = \apply_filters('wp_users_table_template_query', $this->template->templateQuery());
 
