@@ -23,8 +23,8 @@ class UsersTableTemplate
      */
     public function templatePath(): string
     {
-        $path = PLUGIN_PATH . 'templates/users-table.php';
-        $themeFile = get_template_directory() . '/user-listing-table/users-table.php';
+        $path = dirname(__FILE__, 4) . '/templates/users-table.php';
+        $themeFile = \get_template_directory() . '/user-listing-table/users-table.php';
         if (file_exists($themeFile)) { //check if the file exists inside the active theme
             $path = $themeFile;
         }
