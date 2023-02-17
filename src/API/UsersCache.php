@@ -38,7 +38,7 @@ class UsersCache
     {
         $data = get_transient($this->key);
         // Check if the key exists in the cache.
-        if ($data) {
+        if ($data && is_array($data)) {
             // If it does, return the cached data.
             return $data;
         }
