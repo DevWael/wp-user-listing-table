@@ -8,6 +8,11 @@
             "WpUserListingTable\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "WpUserListingTable\\PHPUnit\\Unit\\": "tests/PHPUnit/Unit/"
+        }
+    },
     "authors": [
         {
             "name": "devwael",
