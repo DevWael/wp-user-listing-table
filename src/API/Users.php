@@ -79,14 +79,14 @@ class Users
                 break;
         }
 
-        $response = wp_remote_request($api['url'], [
+        $response = \wp_remote_request($api['url'], [
             'method' => $api['url'], //set the request method like (GET, POST, etc)
         ]);
-        if (is_wp_error($response)) {
+        if (\is_wp_error($response)) {
             //Failed to contact the API
             throw new \RuntimeException($response->get_error_message());
         }
 
-        return wp_remote_retrieve_body($response);
+        return \wp_remote_retrieve_body($response);
     }
 }
