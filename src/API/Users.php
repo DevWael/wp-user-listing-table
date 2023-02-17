@@ -17,9 +17,9 @@ class Users
     private EndPoint $endPoints;
 
     /**
-     * @var int user ID
+     * @var int|null user ID
      */
-    private int $id;
+    private ?int $id;
 
     /**
      * @param EndPoint|null $endPoints instance of EndPoint class
