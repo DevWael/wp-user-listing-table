@@ -25,7 +25,7 @@ class UsersCache
      * @param string $key cache key
      * @param int $expiration expiration in seconds (default = 1 HOUR in seconds)
      */
-    public function __construct(string $key, int $expiration = HOUR_IN_SECONDS)
+    public function __construct(string $key, int $expiration = 3600)
     {
         $this->key = $key;
         $this->expiration = $expiration;
