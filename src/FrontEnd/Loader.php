@@ -56,6 +56,8 @@ class Loader
      * Register custom WordPress rewrite rule to catch the page URL
      * and let the WP knows how to deal witt it.
      *
+     * Works only on flushing rewrite rules!.
+     *
      * @return void
      */
     public function rewriteRule(): void
@@ -117,7 +119,7 @@ class Loader
      */
     public function init(): void
     {
-        \add_action('init', [$this, 'rewriteRule']);
+        \add_action('update_option_rewrite_rules', [$this, 'rewriteRule']);
         \add_filter('query_vars', [$this, 'registerQueryVar']);
         \add_filter('template_include', [$this, 'loadTemplate']);
         \add_action('wp_enqueue_scripts', [$this->assets, 'loadCSS']);
