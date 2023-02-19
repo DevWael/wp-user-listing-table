@@ -54,7 +54,7 @@ class UserListing
              * Load all admin side logic
              */
             $adminPage = new AdminPage();
-            \add_action('init', [$adminPage, 'init']);
+            $adminPage->init();
         }
 
         /**
