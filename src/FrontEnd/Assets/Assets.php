@@ -2,6 +2,11 @@
 
 namespace WpUserListingTable\FrontEnd\Assets;
 
+/**
+ * Interface Assets
+ *
+ * @package WpUserListingTable\FrontEnd\Assets
+ */
 interface Assets
 {
     /**
