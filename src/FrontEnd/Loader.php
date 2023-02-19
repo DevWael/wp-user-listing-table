@@ -8,6 +8,7 @@ namespace WpUserListingTable\FrontEnd;
 
 use WpUserListingTable\FrontEnd\Assets\Assets;
 use WpUserListingTable\FrontEnd\Assets\AssetsLoader;
+use WpUserListingTable\FrontEnd\Templates\UsersTable;
 use WpUserListingTable\FrontEnd\Templates\UsersTableTemplate;
 
 /**
@@ -18,9 +19,9 @@ use WpUserListingTable\FrontEnd\Templates\UsersTableTemplate;
 class Loader
 {
     /**
-     * @var UsersTableTemplate $template UsersTableTemplate class instance.
+     * @var UsersTable $template UsersTableTemplate class instance.
      */
-    private UsersTableTemplate $template;
+    private UsersTable $template;
 
     /**
      * @var Assets $assets AssetsLoader class instance.
@@ -30,8 +31,8 @@ class Loader
     /**
      * View constructor.
      *
-     * @param UsersTableTemplate|null $template UsersTableTemplate instance
-     * @param AssetsLoader|null $assets AssetsLoader instance
+     * @param UsersTable|null $template UsersTable interface
+     * @param Assets|null $assets Assets interface
      */
     public function __construct(
         UsersTable $template = null,

@@ -12,7 +12,7 @@ namespace WpUserListingTable\FrontEnd\Templates;
  * 2. Template regex.
  * 3. Template query.
  */
-class UsersTableTemplate
+class UsersTableTemplate implements UsersTable
 {
     /**
      * Load template file path.
@@ -25,7 +25,7 @@ class UsersTableTemplate
     {
         $path = dirname(__FILE__, 4) . '/templates/users-table.php';
         $themeFile = \get_template_directory() . '/user-listing-table/users-table.php';
-        if (file_exists($themeFile)) { //check if the file exists inside the active theme
+        if (\file_exists($themeFile)) { //check if the file exists inside the active theme
             $path = $themeFile;
         }
 
