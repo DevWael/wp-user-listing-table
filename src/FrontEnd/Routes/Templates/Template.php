@@ -1,13 +1,13 @@
 <?php
 
-namespace WpUserListingTable\FrontEnd\Templates;
+namespace WpUserListingTable\FrontEnd\Routes\Templates;
 
 /**
- * Interface UsersTable
+ * Interface Template
  *
  * @package WpUserListingTable\FrontEnd\Templates
  */
-interface UsersTable
+interface Template
 {
     /**
      * This method should provide the path of the frontend template.
