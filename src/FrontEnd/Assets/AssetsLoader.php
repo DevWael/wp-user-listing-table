@@ -34,6 +34,7 @@ class AssetsLoader implements Assets
             $handle = self::PLUGIN_NAME . '-style';
             $src = $this->pluginResourcesDirUrl() . 'css/style.css';
             \wp_enqueue_style($handle, $src, [], self::PLUGIN_VERSION);
+            \do_action('wp_users_table_load_css_assets');
         }
     }
 
@@ -50,6 +51,7 @@ class AssetsLoader implements Assets
             $handle = self::PLUGIN_NAME . '-script';
             $src = $this->pluginResourcesDirUrl() . 'js/main.js';
             \wp_enqueue_script($handle, $src, ['jquery'], self::PLUGIN_VERSION, true);
+            \do_action('wp_users_table_load_js_assets');
         }
     }
 
@@ -60,6 +62,6 @@ class AssetsLoader implements Assets
      */
     private function pluginResourcesDirUrl(): string
     {
-        return plugin_dir_url(dirname(__FILE__, 3)) . 'resources/';
+        return \plugin_dir_url(dirname(__FILE__, 3)) . 'resources/';
     }
 }
