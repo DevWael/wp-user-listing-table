@@ -20,17 +20,7 @@ namespace WpUserListingTable;
 /**
  * Check if loaded inside a WordPress environment.
  */
-defined('ABSPATH') || exit;
-
-/**
- * The plugin path with trailing slash.
- */
-define('PLUGIN_PATH', plugin_dir_path(__FILE__));
-
-/**
- * The plugin URL with trailing slash.
- */
-define('PLUGIN_URI', plugin_dir_url(__FILE__));
+defined('\ABSPATH') || exit;
 
 /**
  * Load all plugin logic after loading all activated plugins
