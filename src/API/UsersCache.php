@@ -9,7 +9,7 @@ namespace WpUserListingTable\API;
 /**
  * This class provides the caching functionality for the API.
  */
-class UsersCache
+class UsersCache implements Cache
 {
     /**
      * @var string cache key
