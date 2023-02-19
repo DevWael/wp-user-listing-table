@@ -5,14 +5,25 @@
 declare(strict_types=1);
 
 /**
+ * WP User Listing Table
+ *
+ * @package           DevWael\WpUserListingTable
+ * @author            Ahmad Wael
+ * @copyright         2023 Ahmad Wael
+ * @license           GPL-2.0+
+ *
+ * @wordpress-plugin
  * Plugin Name: WP User Listing Table
  * Plugin URI: https://github.com/DevWael/wp-user-listing-table
- * Description: WordPress plugin that provide users listing from a remote API on a custom URL endpoint
+ * Description: WordPress plugin that provide users listing from a remote API on a custom URL endpoint.
  * Version: 1.0.0
  * Author: Ahmad Wael
  * Author URI: https://www.bbioon.com
+ * Requires PHP: 7.4
  * License: GPL-2.0+
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: wp-user-listing
+ * Domain Path: /languages
  */
 
 namespace WpUserListingTable;
