@@ -9,7 +9,7 @@ namespace WpUserListingTable\API;
 /**
  * This class defines the endpoints for the API calls
  */
-class EndPoint
+class EndPoint implements ApiEndpoint
 {
     /**
      * @return string the API host name.

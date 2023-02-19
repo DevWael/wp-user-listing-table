@@ -12,9 +12,9 @@ namespace WpUserListingTable\API;
 class Users
 {
     /**
-     * @var EndPoint instance of EndPoint class
+     * @var ApiEndpoint instance of EndPoint class
      */
-    private EndPoint $endPoints;
+    private ApiEndpoint $endPoints;
 
     /**
      * @var int|null user ID
@@ -22,12 +22,15 @@ class Users
     private ?int $id;
 
     /**
-     * @param EndPoint|null $endPoints instance of EndPoint class
+     * @param ApiEndpoint|null $endPoints instance of EndPoint class
      * @param int|null $id user ID
      */
-    public function __construct(EndPoint $endPoints = null, int $id = null)
+    public function __construct(ApiEndpoint $endPoints = null, int $id = null)
     {
-        $this->endPoints = $endPoints ?? new EndPoint();
+        $this->endPoints = \apply_filters(
+            'wp_users_table_endpoint_object',
+            $endPoints ?? new EndPoint()
+        );
         $this->id = $id;
     }
 
