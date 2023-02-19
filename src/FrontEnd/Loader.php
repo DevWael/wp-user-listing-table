@@ -38,6 +38,7 @@ class Loader
         Assets $assets = null,
         Rule $rewriteRule = null
     ) {
+
         $assetsObject = $assets ?? new AssetsLoader();
         /**
          * Instance of AssetsLoader class to load the assets
