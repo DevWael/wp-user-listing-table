@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-namespace WpUserListingTable\FrontEnd\Templates;
+namespace WpUserListingTable\FrontEnd\Routes\Templates;
 
 /**
  * This class provide template information like
