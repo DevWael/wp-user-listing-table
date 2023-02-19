@@ -7,7 +7,7 @@ declare(strict_types=1);
 namespace WpUserListingTable;
 
 use WpUserListingTable\Admin\AdminPage;
-use WpUserListingTable\FrontEnd\View;
+use WpUserListingTable\FrontEnd\Loader;
 
  /**
   * The plugin main class that responsible for loading all plugin logic.
@@ -60,7 +60,7 @@ class UserListing
         /**
          * Load all frontend logic.
          */
-        $frontEnd = new View();
+        $frontEnd = new Loader();
         $frontEnd->init();
     }
 }

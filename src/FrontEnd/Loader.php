@@ -15,7 +15,7 @@ use WpUserListingTable\FrontEnd\Templates\UsersTableTemplate;
  *
  * @package WpUserListingTable
  */
-class View
+class Loader
 {
     /**
      * @var UsersTableTemplate $template UsersTableTemplate class instance.
