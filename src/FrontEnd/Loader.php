@@ -8,109 +8,50 @@ namespace WpUserListingTable\FrontEnd;
 
 use WpUserListingTable\FrontEnd\Assets\Assets;
 use WpUserListingTable\FrontEnd\Assets\AssetsLoader;
-use WpUserListingTable\FrontEnd\Templates\UsersTable;
-use WpUserListingTable\FrontEnd\Templates\UsersTableTemplate;
+use WpUserListingTable\FrontEnd\Routes\RewriteRule;
+use WpUserListingTable\FrontEnd\Routes\Rule;
 
 /**
  * The class that responsible for loading all frontend logic.
  *
- * @package WpUserListingTable
+ * @package WpUserListingTable\FrontEnd
  */
 class Loader
 {
-    /**
-     * @var UsersTable $template UsersTableTemplate class instance.
-     */
-    private UsersTable $template;
-
     /**
      * @var Assets $assets AssetsLoader class instance.
      */
     private Assets $assets;
 
     /**
-     * View constructor.
+     * @var Rule $rewriteRule Rewrite rules class instance.
+     */
+    private Rule $rewriteRule;
+
+    /**
+     * Loader constructor.
      *
-     * @param UsersTable|null $template UsersTable interface
-     * @param Assets|null $assets Assets interface
+     * @param Assets|null $assets Assets interface compatible class
+     * @param Rule|null $rewriteRule Rule interface compatible class
      */
     public function __construct(
-        UsersTable $template = null,
-        Assets $assets = null
+        Assets $assets = null,
+        Rule $rewriteRule = null
     ) {
-
-        $templateObject = $template ?? new UsersTableTemplate();
-        /**
-         * Instance of UsersTableTemplate class to load the template.
-         */
-        $this->template = \apply_filters('wp_users_table_template_object', $templateObject);
-
         $assetsObject = $assets ?? new AssetsLoader();
         /**
          * Instance of AssetsLoader class to load the assets
          */
         $this->assets = \apply_filters('wp_users_table_assets_object', $assetsObject);
-    }
 
-    /**
-     * Register custom WordPress rewrite rule to catch the page URL
-     * and let the WP knows how to deal witt it.
-     *
-     * Works only on flushing rewrite rules!.
-     *
-     * @return void
-     */
-    public function rewriteRule(): void
-    {
+        $rewriteRuleObject = $rewriteRule ?? new RewriteRule();
         /**
-         * String Template Regex
-         * @see /plugin/src/FrontEnd/Templates/UsersTableTemplate.php
+         * Instance of RewriteRule class to load the assets
          */
-        $regex = \apply_filters('wp_users_table_template_regex', $this->template->templateRegex());
-
-        /**
-         * String Template Query
-         * @see /plugin/src/FrontEnd/Templates/UsersTableTemplate.php
-         */
-        $query = \apply_filters('wp_users_table_template_query', $this->template->templateQuery());
-
-        /**
-         * Adds a rewrite rule to WordPress to transforms it to query vars
-         */
-        \add_rewrite_rule($regex, $query, 'top');
-    }
-
-    /**
-     * Add table_template to WordPress main query.
-     *
-     * @param array $vars
-     * @return array $vars
-     */
-    public function registerQueryVar(array $vars): array
-    {
-        $vars[] = 'table_template';
-
-        /**
-         * Array $vars
-         * Add the ability to modify vars data.
-         */
-        return \apply_filters('wp_users_table_template_query_vars', $vars);
-    }
-
-    public function loadTemplate(string $template): string
-    {
-        if (\get_query_var('table_template') === 'user-listing-table') {
-            /**
-             * String template path.
-             * Set the path of the template that will be loaded
-             * when the custom url is being visited.
-             * Can be overridden with it the active theme under the following directory:
-             * /user-listing-table/users-table.php
-             */
-            return \apply_filters('wp_user_listing_template_path', $this->template->templatePath());
-        }
-
-        return $template;
+        $this->rewriteRule = \apply_filters(
+            'wp_users_table_rewrite_rule_object',
+            $rewriteRuleObject
+        );
     }
 
     /**
@@ -119,9 +60,9 @@ class Loader
      */
     public function init(): void
     {
-        \add_action('update_option_rewrite_rules', [$this, 'rewriteRule']);
-        \add_filter('query_vars', [$this, 'registerQueryVar']);
-        \add_filter('template_include', [$this, 'loadTemplate']);
+        \add_action('update_option_rewrite_rules', [$this->rewriteRule, 'register']);
+        \add_filter('query_vars', [$this->rewriteRule, 'registerQueryVar']);
+        \add_filter('template_include', [$this->rewriteRule, 'loadTemplate']);
         \add_action('wp_enqueue_scripts', [$this->assets, 'loadCSS']);
         \add_action('wp_enqueue_scripts', [$this->assets, 'loadJS']);
     }
