@@ -9,7 +9,7 @@ namespace WpUserListingTable\API;
 /**
  * This class provides the functionality to contact the API to get the users data.
  */
-class Users
+class Users implements UsersClient
 {
     /**
      * @var ApiEndpoint instance of EndPoint class
@@ -43,6 +43,7 @@ class Users
     {
         $requestType = 'list';
         $response = $this->makeRequest($requestType);
+
         return json_decode($response, true, 512, JSON_THROW_ON_ERROR);
     }
 
@@ -59,6 +60,7 @@ class Users
         }
         $requestType = 'single';
         $response = $this->makeRequest($requestType);
+
         return json_decode($response, true, 512, JSON_THROW_ON_ERROR);
     }
 
