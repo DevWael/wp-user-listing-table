@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 namespace WpUserListingTable\FrontEnd;
 
+use WpUserListingTable\FrontEnd\Assets\Assets;
 use WpUserListingTable\FrontEnd\Assets\AssetsLoader;
 use WpUserListingTable\FrontEnd\Templates\UsersTableTemplate;
 
@@ -22,9 +23,9 @@ class View
     private UsersTableTemplate $template;
 
     /**
-     * @var AssetsLoader $assets AssetsLoader class instance.
+     * @var Assets $assets AssetsLoader class instance.
      */
-    private AssetsLoader $assets;
+    private Assets $assets;
 
     /**
      * View constructor.
@@ -32,15 +33,18 @@ class View
      * @param UsersTableTemplate|null $template UsersTableTemplate instance
      * @param AssetsLoader|null $assets AssetsLoader instance
      */
-    public function __construct(UsersTableTemplate $template = null, AssetsLoader $assets = null)
-    {
+    public function __construct(
+        UsersTable $template = null,
+        Assets $assets = null
+    ) {
+
         $templateObject = $template ?? new UsersTableTemplate();
         /**
          * Instance of UsersTableTemplate class to load the template.
          */
         $this->template = \apply_filters('wp_users_table_template_object', $templateObject);
 
-        $assetsObject = $assets ?? new AssetsLoader(PLUGIN_NAME, PLUGIN_VERSION);
+        $assetsObject = $assets ?? new AssetsLoader();
         /**
          * Instance of AssetsLoader class to load the assets
          */

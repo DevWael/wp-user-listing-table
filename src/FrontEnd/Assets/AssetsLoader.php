@@ -9,7 +9,7 @@ namespace WpUserListingTable\FrontEnd\Assets;
 /**
  * This class loads all frontend needed assets.
  */
-class AssetsLoader
+class AssetsLoader implements Assets
 {
     /**
      * @var string $pluginName plugin unique name.
