@@ -24,5 +24,5 @@ interface Cache
      */
     public function set(string $key, array $data, int $expiration): void;
 
-    //todo: add purge function
+    public function purge(string $key): void;
 }

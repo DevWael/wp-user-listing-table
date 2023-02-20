@@ -46,5 +46,9 @@ class UsersCache implements Cache
         \set_transient($key, $data, $expiration);
     }
 
-    //todo: add purge function
+    public function purge(string $key): void
+    {
+        $key = 'WPUL_' . $key;
+        \delete_transient($key);
+    }
 }
