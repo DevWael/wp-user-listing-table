@@ -61,6 +61,11 @@ class RewriteRule implements Rule
          * Adds a rewrite rule to WordPress to transforms it to query vars
          */
         \add_rewrite_rule($regex, $query, 'top');
+
+        /**
+         * todo add comment for this action
+         */
+        \do_action('wp_users_table_rewrite_rule_added', $regex, $query, 'top');
     }
 
     /**
@@ -100,5 +105,16 @@ class RewriteRule implements Rule
         }
 
         return $template;
+    }
+
+    /**
+     * Attach the class functions to WordPress hooks
+     * @return void
+     */
+    public function init(): void
+    {
+        \add_action('update_option_rewrite_rules', [$this, 'register']);
+        \add_filter('query_vars', [$this, 'registerQueryVar']);
+        \add_filter('template_include', [$this, 'loadTemplate']);
     }
 }
