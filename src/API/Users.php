@@ -6,6 +6,12 @@ declare(strict_types=1);
 
 namespace WpUserListingTable\API;
 
+use Exception;
+use RuntimeException;
+use WpUserListingTable\Exceptions\NotFoundException;
+use WpUserListingTable\Exceptions\TimedOutException;
+use WpUserListingTable\Exceptions\UnAuthorizedException;
+
 /**
  * This class provides the functionality to contact the API to get the users data.
  */
@@ -70,7 +76,9 @@ class Users implements UsersClient
      * @param string $requestType set request type to single or list to fetch users.
      * @return string JSON data from the API.
      *
-     * @throws \RuntimeException if failed to contact the remote API.
+     * @throws RuntimeException if failed to contact the remote API.
+     * @throws NotFoundException if the API responded with 404.
+     * @throws Exception If the API responded with any other  error.
      */
     private function makeRequest(string $requestType): string
     {
@@ -89,7 +97,37 @@ class Users implements UsersClient
         ]);
         if (\is_wp_error($response)) {
             //Failed to contact the API
-            throw new \RuntimeException($response->get_error_message());
+            throw new RuntimeException($response->get_error_message());
+        }
+
+        $statusCode = \wp_remote_retrieve_response_code($response);
+
+        if (401 === $statusCode) {
+            /**
+             * Throw Exception if the request Unauthorized.
+             */
+            throw new UnAuthorizedException('Unauthorized request');
+        }
+
+        if (404 === $statusCode) {
+            /**
+             * Throw Exception if the request not found.
+             */
+            throw new NotFoundException('Not found');
+        }
+
+        if (408 === $statusCode) {
+            /**
+             * Throw Exception if the request timed out.
+             */
+            throw new TimedOutException('Request timeout');
+        }
+
+        if ($statusCode < 200 || $statusCode > 299) {
+            /**
+             * Throw Exception if the API responded with status code other than 2xx.
+             */
+            throw new Exception('Something went wrong');
         }
 
         return \wp_remote_retrieve_body($response);
