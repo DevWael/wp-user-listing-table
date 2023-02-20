@@ -21,7 +21,7 @@ class Loader
     /**
      * @var Assets $assets AssetsLoader class instance.
      */
-    private Assets $assets;
+    public Assets $assets;
 
     /**
      * @var Rule $rewriteRule Rewrite rules class instance.
@@ -61,10 +61,8 @@ class Loader
      */
     public function init(): void
     {
-        \add_action('update_option_rewrite_rules', [$this->rewriteRule, 'register']);
-        \add_filter('query_vars', [$this->rewriteRule, 'registerQueryVar']);
-        \add_filter('template_include', [$this->rewriteRule, 'loadTemplate']);
-        \add_action('wp_enqueue_scripts', [$this->assets, 'loadCSS']);
-        \add_action('wp_enqueue_scripts', [$this->assets, 'loadJS']);
+        $this->rewriteRule->init();
+        $this->assets->init();
+        \do_action('wp_users_table_plugin_frontend_loaded');
     }
 }
