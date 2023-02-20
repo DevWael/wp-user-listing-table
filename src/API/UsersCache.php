@@ -12,33 +12,17 @@ namespace WpUserListingTable\API;
 class UsersCache implements Cache
 {
     /**
-     * @var string cache key
-     */
-    private string $key;
-
-    /**
-     * @var int $expiration expiration in seconds
-     */
-    private $expiration;
-
-    /**
-     * @param string $key cache key
-     * @param int $expiration expiration in seconds (default = 1 HOUR in seconds)
-     */
-    public function __construct(string $key, int $expiration = 3600)
-    {
-        $this->key = $key;
-        $this->expiration = $expiration;
-    }
-
-    /**
+     * Get cached data.
+     *
+     * @param string $key
      * @return array of cached data if existing.
      */
-    public function get(): array
+    public function get(string $key): array
     {
-        $data = get_transient($this->key);
+        $key = 'WPUL_' . $key;
+        $data = \get_transient($key);
         // Check if the key exists in the cache.
-        if ($data && is_array($data)) {
+        if ($data && \is_array($data)) {
             // If it does, return the cached data.
             return $data;
         }
@@ -48,14 +32,18 @@ class UsersCache implements Cache
     }
 
     /**
-     * Cache the provided data
+     * Save the provided data to cache storage.
+     *
+     * @param string $key
      * @param array $data data to be cached
+     * @param int $expiration
      * @return void
      */
-    public function set(array $data): void
+    public function set(string $key, array $data, int $expiration = 3600): void
     {
+        $key = 'WPUL_' . $key;
         // Add the data to the cache with the given key.
-        set_transient($this->key, $data, $this->expiration);
+        \set_transient($key, $data, $expiration);
     }
 
     //todo: add purge function

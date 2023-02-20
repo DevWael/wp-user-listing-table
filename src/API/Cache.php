@@ -14,7 +14,7 @@ interface Cache
      *
      * @return array the cached data.
      */
-    public function get(): array;
+    public function get(string $key): array;
 
     /**
      * Save data to cache storage.
@@ -22,7 +22,7 @@ interface Cache
      * @param array $data data to be cached.
      * @return void
      */
-    public function set(array $data): void;
+    public function set(string $key, array $data, int $expiration): void;
 
     //todo: add purge function
 }
