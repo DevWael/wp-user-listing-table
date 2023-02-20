@@ -64,4 +64,14 @@ class AssetsLoader implements Assets
     {
         return \plugin_dir_url(dirname(__FILE__, 3)) . 'resources/';
     }
+
+    /**
+     * Attach the class functions to WordPress hooks
+     * @return void
+     */
+    public function init(): void
+    {
+        \add_action('wp_enqueue_scripts', [$this, 'loadCSS']);
+        \add_action('wp_enqueue_scripts', [$this, 'loadJS']);
+    }
 }
