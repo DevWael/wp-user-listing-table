@@ -75,7 +75,7 @@ class UsersProvider implements Provider
     {
         try {
             $list = $this->fetchUsers();
-        } catch (\Throwable $e) {
+        } catch (\Throwable $exception) {
             return [];
         }
 
