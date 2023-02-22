@@ -22,7 +22,7 @@ interface Cache
      * @param array $data data to be cached.
      * @return void
      */
-    public function set(string $key, array $data, int $expiration): void;
+    public function set(string $key, array $data, int $expiration = 3600): void;
 
     public function purge(string $key): void;
 }
