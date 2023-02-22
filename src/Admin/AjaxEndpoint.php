@@ -155,6 +155,34 @@ class AjaxEndpoint
     }
 
     /**
+     * Get user data from the cache.
+     *
+     * @param  int  $id
+     *
+     * @return array
+     */
+    public function cachedUserData(int $id): array
+    {
+        $cacheKey = self::CACHE_KEY . '_' . $id;
+
+        return $this->cache->get($cacheKey);
+    }
+
+    /**
+     * Save user data to cache.
+     *
+     * @param  int    $id    user id
+     * @param  array  $data  single user data.
+     *
+     * @return void
+     */
+    private function saveToCache(int $id, array $data): void
+    {
+        $cacheKey = self::CACHE_KEY . '_' . $id;
+        $this->cache->set($cacheKey, $data);
+    }
+
+    /**
      * Get single user details from the API.
      *
      * @param  int  $id
@@ -164,11 +192,13 @@ class AjaxEndpoint
      */
     public function singleUserDetails(int $id): array
     {
-        $cacheKey = self::CACHE_KEY . '_' . $id;
-        $data = $this->cache->get($cacheKey);
+        $data = $this->cachedUserData($id);
+        /**
+         * If no cached user data, call it from the API then save it to the cache.
+         */
         if (empty($data)) {
             $data = $this->client->userById($id);
-            $this->cache->set($cacheKey, $data);
+            $this->saveToCache($id, $data);
         }
 
         return $this->escape($data);
