@@ -7,6 +7,7 @@ declare(strict_types=1);
 namespace WpUserListingTable;
 
 use WpUserListingTable\Admin\AdminPage;
+use WpUserListingTable\Admin\AjaxEndpoint;
 use WpUserListingTable\FrontEnd\Loader;
 
  /**
@@ -56,6 +57,9 @@ class UserListing
             $adminPage = new AdminPage();
             $adminPage->init();
         }
+
+        $ajax = new AjaxEndpoint();
+        $ajax->init();
 
         /**
          * Load all frontend logic.
