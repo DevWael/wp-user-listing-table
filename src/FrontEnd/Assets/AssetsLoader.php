@@ -64,8 +64,8 @@ class AssetsLoader implements Assets
              * frontend components.
              */
             \wp_localize_script($handle, 'usersTableObject', [
-                'ajaxURL' => esc_url(admin_url('admin-ajax.php')),
-                'nonce' => wp_create_nonce(),
+                'ajaxURL' => esc_url(\admin_url('admin-ajax.php')),
+                'nonce' => \wp_create_nonce(),
                 'action' => 'users_table_request',
                 'i18n' => [
                     'popupTitle' => esc_html__(
