@@ -171,7 +171,24 @@ class AjaxEndpoint
             $this->cache->set($cacheKey, $data);
         }
 
-        //todo: escape $data before sending to the client.
+        return $this->escape($data);
+    }
+
+    /**
+     * Walk through the user array and escape the data
+     *
+     * @param  array  $data
+     *
+     * @return array
+     */
+    public function escape(array $data): array
+    {
+        array_walk_recursive($data, static function (string &$value) {
+            if ($value !== '') {
+                $value = \esc_html($value);
+            }
+        });
+
         return $data;
     }
 
