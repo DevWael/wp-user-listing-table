@@ -73,7 +73,7 @@ class AjaxEndpoint
             }
         } catch (\Throwable $exception) {
             $this->sendJsonError(
-                $exception->getMessage() . $exception->getTraceAsString()
+                $exception->getMessage()
             );
         }
     }
