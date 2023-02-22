@@ -31,13 +31,12 @@ class Users implements UsersClient
      * @param ApiEndpoint|null $endPoints instance of EndPoint class
      * @param int|null $id user ID
      */
-    public function __construct(ApiEndpoint $endPoints = null, int $id = null)
+    public function __construct(ApiEndpoint $endPoints = null)
     {
         $this->endPoints = \apply_filters(
             'wp_users_table_endpoint_object',
             $endPoints ?? new EndPoint()
         );
-        $this->id = $id;
     }
 
     /**
@@ -59,11 +58,9 @@ class Users implements UsersClient
      * @throws \JsonException if failed to decode the response
      * @throws \InvalidArgumentException if no user ID provided in the instance.
      */
-    public function userById(): array
+    public function userById(int $id): array
     {
-        if ($this->id === null) {
-            throw new \InvalidArgumentException('User ID cannot be null.');
-        }
+        $this->id = $id;
         $requestType = 'single';
         $response = $this->makeRequest($requestType);
 

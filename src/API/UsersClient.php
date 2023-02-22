@@ -23,5 +23,5 @@ interface UsersClient
      * @return array the single user data on success.
      * @throws \Throwable throw some exceptions based on the returning errors.
      */
-    public function userById(): array;
+    public function userById(int $id): array;
 }
