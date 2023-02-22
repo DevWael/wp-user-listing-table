@@ -65,7 +65,7 @@ class AjaxEndpoint
     {
         try {
             $this->checkNonce();
-            $userId = $this->userId();
+            $userId = $this->verifyUserId();
             if ($userId) {
                 //go with provided user id.
                 $singleUserData = $this->singleUserDetails($userId);
@@ -99,23 +99,24 @@ class AjaxEndpoint
      * Sanitize it and return an integer.
      *
      * @return int user id.
+     * @throws \InvalidArgumentException if the user id is invalid or not provided
      */
-    public function userId()
+    public function verifyUserId(): int
     {
         $requestQuery = $this->request->get();
-        $userId = 0;
-        if (isset($requestQuery['user_id'])) {
-            $requestUserId = $requestQuery['user_id'];
-            $requestUserId = \wp_unslash($requestUserId);
-            if (! $this->isValidUserId($requestUserId)) {
-                $this->sendJsonError(esc_html__('invalid user id'));
-            }
-            $userId = \absint($requestUserId);
-        } else {
-            $this->sendJsonError(esc_html__('user id is required'));
+        if (! isset($requestQuery['user_id'])) {
+            throw new \InvalidArgumentException(
+                esc_html__('User ID must be provided')
+            );
+        }
+        $requestUserId = \wp_unslash($requestQuery['user_id']);
+        if (! $this->isValidUserId($requestUserId)) {
+            throw new \InvalidArgumentException(
+                esc_html__('invalid user id')
+            );
         }
 
-        return $userId;
+        return \absint($requestUserId);
     }
 
     /**
