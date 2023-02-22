@@ -1,0 +1,129 @@
+.hidden{
+    display: none;
+}
+
+.wp-users-table-template .table-wrapper{
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Add box shadow and rounded corners */
+.wp-users-table {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Add gradient background */
+.wp-users-table {
+    background: #fff;
+    background: linear-gradient(to bottom, #fff 0%, #f9f9f9 100%);
+}
+
+/* Style table header */
+.wp-users-table th {
+    background-color: #4c4c4c;
+    color: #fff;
+    font-weight: bold;
+    padding: 16px;
+    text-align: left;
+}
+
+/* Style table rows */
+.wp-users-table tr {
+    border-bottom: 1px solid #ccc;
+}
+
+.wp-users-table tr:last-child {
+    border-bottom: none;
+}
+
+/* Style table cells */
+.wp-users-table td {
+    padding: 12px 16px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/* Add hover effect on rows */
+.wp-users-table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Style links in table */
+.wp-users-table a {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.wp-users-table a:hover {
+    text-decoration: underline;
+}
+
+/*Popup part*/
+
+.wp-single-user-data {
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.wp-single-user-data ul{
+    margin: 0;
+    padding: 0;
+}
+
+.wp-single-user-data h2 {
+    color: #2F80ED;
+    text-align: center;
+}
+
+.wp-single-user-data hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 5px 0;
+}
+
+.wp-single-user-data table tr td:first-of-type{
+    width: 25%;
+}
+
+.wp-single-user-data table tr td:nth-of-type(2){
+    width: 75%;
+}
+
+.wp-users-table-template .overlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: none;
+}
+
+.wp-single-user-popup-container{
+    position: absolute;
+    top: 200px;
+    width: 700px;
+    max-width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001;
+    display: none;
+}
+
+.wp-users-table-template .overlay.open,
+.wp-single-user-popup-container.open{
+    display: block;
+}
+
+.wp-single-user-popup-container td{
+    padding: 5px 16px;
+}
