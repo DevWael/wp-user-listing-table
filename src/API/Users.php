@@ -90,7 +90,7 @@ class Users implements UsersClient
         }
 
         $response = \wp_remote_request($api['url'], [
-            'method' => $api['url'], //set the request method like (GET, POST, etc)
+            'method' => $api['type'], //set the request method like (GET, POST, etc)
         ]);
         if (\is_wp_error($response)) {
             //Failed to contact the API
