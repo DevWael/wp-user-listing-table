@@ -94,7 +94,7 @@ class Users implements UsersClient
         ]);
         if (\is_wp_error($response)) {
             //Failed to contact the API
-            throw new RuntimeException($response->get_error_message());
+            throw new RuntimeException('Failed to contact the API');
         }
 
         $statusCode = \wp_remote_retrieve_response_code($response);
