@@ -42,7 +42,7 @@ class Users implements UsersClient
     /**
      * Get list of users data.
      *
-     * @throws \JsonException if failed to decode the response
+     * @throws \JsonException|NotFoundException if failed to decode the response
      */
     public function users(): array
     {
@@ -56,7 +56,6 @@ class Users implements UsersClient
      * Get list of users data.
      *
      * @throws \JsonException if failed to decode the response
-     * @throws \InvalidArgumentException if no user ID provided in the instance.
      */
     public function userById(int $id): array
     {
