@@ -24,7 +24,7 @@ class RewriteRule implements Rule
     /**
      * RewriteRule constructor.
      *
-     * @param Template|null $template UsersTable interface
+     * @param  Template|null  $template  UsersTable interface
      */
     public function __construct(Template $template = null)
     {
@@ -32,7 +32,10 @@ class RewriteRule implements Rule
         /**
          * Instance of UsersTableTemplate class to load the template.
          */
-        $this->template = \apply_filters('wp_users_table_template_object', $templateObject);
+        $this->template = \apply_filters(
+            'wp_users_table_template_object',
+            $templateObject
+        );
     }
 
     /**
@@ -47,16 +50,24 @@ class RewriteRule implements Rule
     {
         /**
          * String Template Regex
+         *
          * @see /plugin/src/FrontEnd/Templates/UsersTableTemplate.php
          */
-        $regex = \apply_filters('wp_users_table_template_regex', $this->template->templateRegex());
+        $regex = \apply_filters(
+            'wp_users_table_template_regex',
+            $this->template->templateRegex()
+        );
 
         /**
          * String Template Query
+         *
          * @see /plugin/src/FrontEnd/Templates/UsersTableTemplate.php
          */
-        $query = \apply_filters('wp_users_table_template_query', $this->template->templateQuery());
-
+        $query = \apply_filters(
+            'wp_users_table_template_query',
+            $this->template->templateQuery()
+        );
+        //todo: save the rewrite state in an option with no autoload then check if it's saved before continuing.
         /**
          * Adds a rewrite rule to WordPress to transforms it to query vars
          */
@@ -71,7 +82,8 @@ class RewriteRule implements Rule
     /**
      * Add table_template to WordPress main query.
      *
-     * @param array $vars
+     * @param  array  $vars
+     *
      * @return array $vars
      */
     public function registerQueryVar(array $vars): array
@@ -88,7 +100,8 @@ class RewriteRule implements Rule
     /**
      * Provide template path for WordPress.
      *
-     * @param string $template path
+     * @param  string  $template  path
+     *
      * @return string path
      */
     public function loadTemplate(string $template): string
@@ -102,7 +115,10 @@ class RewriteRule implements Rule
              * Can be overridden with it the active theme under the following directory:
              * /user-listing-table/users-table.php
              */
-            return \apply_filters('wp_user_listing_template_path', $this->template->templatePath());
+            return \apply_filters(
+                'wp_user_listing_template_path',
+                $this->template->templatePath()
+            );
         }
 
         return $template;
@@ -137,6 +153,7 @@ class RewriteRule implements Rule
 
     /**
      * Attach the class functions to WordPress hooks
+     *
      * @return void
      */
     public function init(): void
