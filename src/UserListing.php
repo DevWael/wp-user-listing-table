@@ -8,6 +8,7 @@ namespace WpUserListingTable;
 
 use WpUserListingTable\Admin\AdminPage;
 use WpUserListingTable\Admin\AjaxEndpoint;
+use WpUserListingTable\Admin\MenuNav;
 use WpUserListingTable\FrontEnd\Loader;
 
  /**
@@ -57,6 +58,9 @@ class UserListing
             $adminPage = new AdminPage();
             $adminPage->init();
         }
+        //todo: reorganize class instances here
+        $menu = new MenuNav();
+        $menu->init();
 
         $ajax = new AjaxEndpoint();
         $ajax->init();
