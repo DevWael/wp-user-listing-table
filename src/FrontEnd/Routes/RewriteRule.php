@@ -94,6 +94,7 @@ class RewriteRule implements Rule
     public function loadTemplate(string $template): string
     {
         if (\get_query_var('table_template') === 'user-listing-table') {
+            $this->adjustWpQueryParam();
             /**
              * String template path.
              * Set the path of the template that will be loaded
@@ -108,6 +109,33 @@ class RewriteRule implements Rule
     }
 
     /**
+     * Set the rule page title.
+     *
+     * @param  array  $titleParts strings of the page title
+     *
+     * @return array strings of the page title
+     */
+    public function templateTitle(array $titleParts): array
+    {
+        if (\get_query_var('table_template') === 'user-listing-table') {
+            $titleParts['title'] = esc_html__('Users Table');
+        }
+
+        return $titleParts;
+    }
+
+    /**
+     * Set the is_home() to false on the users table page.
+     *
+     * @return void
+     */
+    private function adjustWpQueryParam(): void
+    {
+        global $wp_query;
+        $wp_query->is_home = false;
+    }
+
+    /**
      * Attach the class functions to WordPress hooks
      * @return void
      */
@@ -116,5 +144,6 @@ class RewriteRule implements Rule
         \add_action('update_option_rewrite_rules', [$this, 'register']);
         \add_filter('query_vars', [$this, 'registerQueryVar']);
         \add_filter('template_include', [$this, 'loadTemplate']);
+        \add_filter('document_title_parts', [$this, 'templateTitle']);
     }
 }
