@@ -58,7 +58,7 @@ $users = apply_filters('wp_user_table_users_list', $usersProvider->usersList());
 
         <?php
         endif; ?>
-        <div class="overlay hidden"></div>
+        <div class="overlay"></div>
         <div class="wp-single-user-popup-container"></div>
     </div>
 <?php
