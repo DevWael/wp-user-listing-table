@@ -10,7 +10,8 @@ namespace WpUserListingTable\Admin;
  * Add users table to WordPress menu items in menu dashboard
  * to make it easier to add users table link to the nav menu.
  *
- * Adapted from http://www.johnmorrisonline.com/how-to-add-a-fully-functional-custom-meta-box-to-wordpress-navigation-menus/.
+ * Adapted from:
+ * https://www.johnmorrisonline.com/how-to-add-a-fully-functional-custom-meta-box-to-wordpress-navigation-menus/.
  */
 class MenuNav
 {
@@ -50,7 +51,7 @@ class MenuNav
                             <input type="checkbox" class="menu-item-checkbox"
                                    name="menu-item[-1][menu-item-object-id]"
                                    value="-1"> <?php
-                            esc_html_e('Users Table') ?>
+                                    esc_html_e('Users Table') ?>
                         </label>
                         <input type="hidden" class="menu-item-type"
                                name="menu-item[-1][menu-item-type]"
@@ -58,10 +59,10 @@ class MenuNav
                         <input type="hidden" class="menu-item-title"
                                name="menu-item[-1][menu-item-title]"
                                value="<?php
-                               esc_attr_e('Users Table') ?>">
+                                esc_attr_e('Users Table') ?>">
                         <input type="hidden" class="menu-item-url"
                                name="menu-item[-1][menu-item-url]" value="<?php
-                        echo esc_url(home_url('/user-listing-table')) ?>">
+                                echo esc_url(home_url('/user-listing-table')) ?>">
                         <input type="hidden" class="menu-item-classes"
                                name="menu-item[-1][menu-item-classes]"
                                value="users-listing-table">
@@ -80,7 +81,7 @@ class MenuNav
                     <input type="submit"
                            class="button-secondary submit-add-to-menu right"
                            value="<?php
-                           esc_attr_e('Add to Menu'); ?>"
+                            esc_attr_e('Add to Menu'); ?>"
                            name="add-users-list-menu-item"
                            id="submit-users-list-link">
                     <span class="spinner"></span>
