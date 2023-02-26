@@ -62,3 +62,25 @@ if (!class_exists(UserListing::class) && is_readable($autoLoad)) {
  * Create instance from the main plugin class
  */
 class_exists(UserListing::class) && UserListing::instance();
+
+/**
+ * Flush rewrite rules on plugin activation to register the plugin rule.
+ */
+\register_activation_hook(__FILE__, static function(){
+    flush_rewrite_rules();
+});
+
+/**
+ * Flush rewrite rules on plugin deactivation to clean the rewrite rules.
+ */
+\register_deactivation_hook(__FILE__, static function(){
+    /**
+     * flush the rewrite rules before deleting the plugin option to
+     * prevent reloading the plugin rewrite rules again.
+     */
+    flush_rewrite_rules();
+    /**
+     * delete the plugin option to allow register the rewrite rules again on activation.
+     */
+    //\delete_option('');
+});
