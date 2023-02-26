@@ -50,16 +50,17 @@ class AssetsLoader implements Assets
          * Check if the plugin frontend page is opened before loading the assets files.
          */
         if (\get_query_var('table_template') === 'user-listing-table') {
-            $handle = self::PLUGIN_NAME.'-script';
-            $purifySrc = $this->pluginResourcesDirUrl().'js/purify.min.js';
+            $handle = self::PLUGIN_NAME . '-script';
+            $purifySrc = $this->pluginResourcesDirUrl() . 'js/purify.min.js';
             \wp_enqueue_script(
                 'DOMPurify',
                 $purifySrc,
                 [],
-                '3.0.0'
+                '3.0.0',
+                false
             );
 
-            $mainSrc = $this->pluginResourcesDirUrl().'js/main.js';
+            $mainSrc = $this->pluginResourcesDirUrl() . 'js/main.js';
             \wp_enqueue_script(
                 $handle,
                 $mainSrc,
