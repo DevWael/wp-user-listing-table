@@ -100,6 +100,10 @@ class AssetsLoader implements Assets
                         'wp-user-listing'
                     ),
                     'business' => esc_html__('Business', 'wp-user-listing'),
+                    'networkFailure' => esc_html__(
+                        'Network error, please check your internet connection!',
+                        'wp-user-listing'
+                    ),
                 ],
             ]);
             \do_action('wp_users_table_load_js_assets');
