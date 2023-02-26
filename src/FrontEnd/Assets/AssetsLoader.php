@@ -76,10 +76,7 @@ class AssetsLoader implements Assets
                 'nonce' => \wp_create_nonce(),
                 'action' => 'users_table_request',
                 'i18n' => [
-                    'popupTitle' => esc_html__(
-                        'User Information',
-                        'wp-user-listing'
-                    ),
+                    'popupTitle' => esc_html__('User Information', 'wp-user-listing'),
                     'id' => esc_html__('ID', 'wp-user-listing'),
                     'name' => esc_html__('Name', 'wp-user-listing'),
                     'username' => esc_html__('Username', 'wp-user-listing'),
