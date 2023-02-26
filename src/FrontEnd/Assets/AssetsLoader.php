@@ -92,10 +92,7 @@ class AssetsLoader implements Assets
                     'website' => esc_html__('Website', 'wp-user-listing'),
                     'company' => esc_html__('Company', 'wp-user-listing'),
                     'companyName' => esc_html__('Name', 'wp-user-listing'),
-                    'catchphrase' => esc_html__(
-                        'Catchphrase',
-                        'wp-user-listing'
-                    ),
+                    'catchphrase' => esc_html__('Catchphrase', 'wp-user-listing'),
                     'business' => esc_html__('Business', 'wp-user-listing'),
                     'networkFailure' => esc_html__(
                         'Network error, please check your internet connection!',
