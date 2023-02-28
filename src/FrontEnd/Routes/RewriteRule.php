@@ -67,16 +67,30 @@ class RewriteRule implements Rule
             'wp_users_table_template_query',
             $this->template->templateQuery()
         );
-        //todo: save the rewrite state in an option with no autoload then check if it's saved before continuing.
-        /**
-         * Adds a rewrite rule to WordPress to transforms it to query vars
-         */
-        \add_rewrite_rule($regex, $query, 'top');
 
         /**
-         * todo add comment for this action
+         * Check if rewrite rule is added before attempting to add
          */
-        \do_action('wp_users_table_rewrite_rule_added', $regex, $query, 'top');
+        if (! \get_option('wpul-rules-flag')) {
+            /**
+             * Adds a rewrite rule to WordPress to transforms it to query vars
+             */
+            \add_rewrite_rule($regex, $query, 'top');
+
+            /**
+             * Set the rewrite rule as added
+             */
+            \update_option('wpul-rules-flag', true);
+            /**
+             * todo add comment for this action
+             */
+            \do_action(
+                'wp_users_table_rewrite_rule_added',
+                $regex,
+                $query,
+                'top'
+            );
+        }
     }
 
     /**
