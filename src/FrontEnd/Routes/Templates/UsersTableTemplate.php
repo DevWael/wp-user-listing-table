@@ -37,7 +37,7 @@ class UsersTableTemplate implements Template
      */
     public function templateRegex(): string
     {
-        return 'user-listing-table';
+        return \untrailingslashit(\get_option('wpul-table-slug', 'user-listing-table'));
     }
 
     /**
