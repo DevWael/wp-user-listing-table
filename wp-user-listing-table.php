@@ -82,5 +82,5 @@ class_exists(UserListing::class) && UserListing::instance();
     /**
      * delete the plugin option to allow register the rewrite rules again on activation.
      */
-    //\delete_option('');
+    \delete_option('wpul-rules-flag');
 });
