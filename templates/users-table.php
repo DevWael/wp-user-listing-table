@@ -10,7 +10,38 @@
  */
 
 defined('ABSPATH') || exit;
-get_header();
+
+/**
+ * Check if the installed theme is block theme (FSE Themes).
+ * If so, then we won't load the get_header() function as the theme doesn't
+ * include any header.php file.
+ * We will load the theme header block instead.
+ *
+ * @see https://core.trac.wordpress.org/ticket/55023
+ */
+$blockTheme = wp_is_block_theme();
+if ($blockTheme) {
+    ?><!doctype html>
+    <html <?php language_attributes(); ?>>
+    <head>
+        <meta charset="<?php bloginfo( 'charset' ); ?>">
+        <?php wp_head(); ?>
+    </head>
+    <body <?php body_class(); ?>>
+    <?php wp_body_open(); ?>
+    <div class="wp-site-blocks">
+        <header class="wp-block-template-part">
+            <?php block_header_area() ?>
+        </header>
+    <?php
+}
+/**
+ * If it's traditional WP theme, then load the header.
+ */
+if (!$blockTheme) {
+    get_header();
+}
+
 do_action('wp_user_table_start');
 $usersProvider = new WpUserListingTable\FrontEnd\Data\UsersProvider();
 $users = apply_filters('wp_user_table_users_list', $usersProvider->usersList());
@@ -63,4 +94,24 @@ $users = apply_filters('wp_user_table_users_list', $usersProvider->usersList());
     </div>
 <?php
 do_action('wp_user_table_end');
-get_footer();
+
+/**
+ * Check if the installed theme is block theme (FSE Themes).
+ * If so, then we won't load the get_footer() function as the theme doesn't
+ * include any footer.php file.
+ * We will load the theme footer block instead.
+ */
+if ($blockTheme) {
+    ?>
+    <?php block_footer_area(); ?>
+    </div>
+    <?php wp_footer(); ?>
+    </body>
+    </html><?php
+}
+/**
+ * If it's traditional WP theme, then load the footer.
+ */
+if (!$blockTheme) {
+    get_footer();
+}
