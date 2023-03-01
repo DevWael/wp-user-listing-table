@@ -142,7 +142,7 @@ class RewriteRule implements Rule
     public function templateTitle(array $titleParts): array
     {
         if (\get_query_var('table_template') === 'user-listing-table') {
-            $titleParts['title'] = esc_html__('Users Table');
+            $titleParts['title'] = esc_html__('Users Table', 'wp-user-listing');
         }
 
         return $titleParts;
