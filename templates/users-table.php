@@ -64,29 +64,20 @@ $users = apply_filters('wp_user_table_users_list', $usersProvider->usersList());
                     </thead>
                     <tbody>
                     <?php
-                    foreach ($users
-
-                    as $user):
+                    foreach ($users as $user):
                     $userID = $user['id'] ?? '';
                     $name = $user['name'] ?? '';
                     $userName = $user['username'] ?? '';
                     ?>
-                    <tr>
-                        <td data-user-id="<?php
-                        echo esc_attr($userID) ?>"><?php
-                            echo esc_html($userID) ?></td>
-                        <td data-user-id="<?php
-                        echo esc_attr($userID) ?>"><?php
-                            echo esc_html($name) ?></td>
-                        <td data-user-id="<?php
-                        echo esc_attr($userID) ?>"><?php
-                            echo esc_html($userName) ?></td>
-                        <?php
-                        endforeach; ?>
+                        <tr>
+                            <td data-user-id="<?php echo esc_attr($userID) ?>"><?php echo esc_html($userID) ?></td>
+                            <td data-user-id="<?php echo esc_attr($userID) ?>"><?php echo esc_html($name) ?></td>
+                            <td data-user-id="<?php echo esc_attr($userID) ?>"><?php echo esc_html($userName) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
-
         <?php
         endif; ?>
         <div class="overlay"></div>
