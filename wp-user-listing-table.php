@@ -34,21 +34,6 @@ namespace WpUserListingTable;
 defined('\ABSPATH') || exit;
 
 /**
- * Load all plugin logic after loading all activated plugins
- */
-\add_action('plugins_loaded', __NAMESPACE__ . '\initialize');
-function initialize()
-{
-    //todo create the languages class.
-    /**
-     * Load plugin text domain
-     */
-    \load_plugin_textdomain('wp-user-listing', false, dirname(plugin_basename(__FILE__)) . '/languages');
-
-
-}
-
-/**
  * Load composer packages
  */
 $autoLoad = plugin_dir_path(__FILE__) . 'vendor/autoload.php';
