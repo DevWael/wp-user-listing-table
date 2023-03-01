@@ -65,9 +65,15 @@ $users = apply_filters('wp_user_table_users_list', $usersProvider->usersList());
                     <tbody>
                     <?php
                     foreach ($users as $user):
-                    $userID = $user['id'] ?? '';
-                    $name = $user['name'] ?? '';
-                    $userName = $user['username'] ?? '';
+                        /**
+                         * Use this filter to modify the user data before it printed.
+                         *
+                         * @param $user array user data.
+                         */
+                        $user = apply_filters('wp_user_table_user_loop_item', $user);
+                        $userID = $user['id'] ?? '';
+                        $name = $user['name'] ?? '';
+                        $userName = $user['username'] ?? '';
                     ?>
                         <tr>
                             <td data-user-id="<?php echo esc_attr($userID) ?>"><?php echo esc_html($userID) ?></td>
