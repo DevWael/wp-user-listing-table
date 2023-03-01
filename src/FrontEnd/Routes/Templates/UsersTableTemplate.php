@@ -37,7 +37,8 @@ class UsersTableTemplate implements Template
      */
     public function templateRegex(): string
     {
-        return \untrailingslashit(\get_option('wpul-table-slug', 'user-listing-table'));
+        $regex = \get_option('wpul-table-slug', 'user-listing-table');
+        return '^' . \untrailingslashit(\sanitize_text_field($regex)) . '$';
     }
 
     /**
