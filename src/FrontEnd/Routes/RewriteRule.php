@@ -80,7 +80,7 @@ class RewriteRule implements Rule
             /**
              * Set the rewrite rule as added
              */
-            \update_option('wpul-rules-flag', true);
+            \update_option('wpul-rules-flag', true, false);
             /**
              * todo add comment for this action
              */
