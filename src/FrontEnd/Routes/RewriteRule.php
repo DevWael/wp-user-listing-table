@@ -40,9 +40,7 @@ class RewriteRule implements Rule
 
     /**
      * Register custom WordPress rewrite rule to catch the page URL
-     * and let the WP knows how to deal witt it.
-     *
-     * Works only on flushing rewrite rules!.
+     * and let the WP knows how to deal with it.
      *
      * @return void
      */
@@ -69,28 +67,24 @@ class RewriteRule implements Rule
         );
 
         /**
-         * Check if rewrite rule is added before attempting to add
+         * Adds a rewrite rule to WordPress to transforms it to query vars
          */
-        if (! \get_option('wpul-rules-flag')) {
-            /**
-             * Adds a rewrite rule to WordPress to transforms it to query vars
-             */
-            \add_rewrite_rule($regex, $query, 'top');
+        \add_rewrite_rule($regex, $query, 'top');
 
-            /**
-             * Set the rewrite rule as added
-             */
-            \update_option('wpul-rules-flag', true, false);
-            /**
-             * todo add comment for this action
-             */
-            \do_action(
-                'wp_users_table_rewrite_rule_added',
-                $regex,
-                $query,
-                'top'
-            );
-        }
+        /**
+         * Set the rewrite rule as added
+         */
+        \update_option('wpul-rules-flag', true, false);
+
+        /**
+         * todo add comment for this action
+         */
+        \do_action(
+            'wp_users_table_rewrite_rule_added',
+            $regex,
+            $query,
+            'top'
+        );
     }
 
     /**
@@ -172,7 +166,7 @@ class RewriteRule implements Rule
      */
     public function init(): void
     {
-        \add_action('update_option_rewrite_rules', [$this, 'register']);
+        \add_action('init', [$this, 'register']);
         \add_filter('query_vars', [$this, 'registerQueryVar']);
         \add_filter('template_include', [$this, 'loadTemplate']);
         \add_filter('document_title_parts', [$this, 'templateTitle']);
