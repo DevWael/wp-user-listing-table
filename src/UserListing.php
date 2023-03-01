@@ -10,8 +10,9 @@ use WpUserListingTable\Admin\AdminPage;
 use WpUserListingTable\Admin\AjaxEndpoint;
 use WpUserListingTable\Admin\MenuNav;
 use WpUserListingTable\FrontEnd\Loader;
+use WpUserListingTable\I18n\Languages;
 
- /**
+/**
   * The plugin main class that responsible for loading all plugin logic.
   *
   * @package WpUserListingTable
@@ -64,6 +65,9 @@ class UserListing
 
         $ajax = new AjaxEndpoint();
         $ajax->init();
+
+        $lang = new Languages();
+        $lang->init();
 
         /**
          * Load all frontend logic.
