@@ -41,7 +41,9 @@ if ($blockTheme) {
 if (!$blockTheme) {
     get_header();
 }
-
+/**
+ * Use this action to add content above the users table.
+ */
 do_action('wp_user_table_start');
 $usersProvider = new WpUserListingTable\FrontEnd\Data\UsersProvider();
 $users = apply_filters('wp_user_table_users_list', $usersProvider->usersList());
@@ -90,6 +92,9 @@ $users = apply_filters('wp_user_table_users_list', $usersProvider->usersList());
         <div class="wp-single-user-popup-container"></div>
     </div>
 <?php
+/**
+ * Use this action to add content below the users table.
+ */
 do_action('wp_user_table_end');
 
 /**
