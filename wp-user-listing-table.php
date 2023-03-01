@@ -28,6 +28,8 @@ declare(strict_types=1);
 
 namespace WpUserListingTable;
 
+use WpUserListingTable\FrontEnd\Routes\RewriteRule;
+
 /**
  * Check if loaded inside a WordPress environment.
  */
@@ -52,5 +54,6 @@ class_exists(UserListing::class) && UserListing::instance();
  * Flush rewrite rules on plugin activation to register the plugin rule.
  */
 \register_activation_hook(__FILE__, static function(){
+    (new RewriteRule())->register(); // initialize the rewrite rules
     flush_rewrite_rules();
 });
