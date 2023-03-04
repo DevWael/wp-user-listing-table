@@ -19,6 +19,7 @@ declare(strict_types=1);
  * Version: 1.0.0
  * Author: Ahmad Wael
  * Author URI: https://www.bbioon.com
+ * Requires at least: 5.9
  * Requires PHP: 7.4
  * License: GPL-2.0+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
