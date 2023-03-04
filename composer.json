@@ -2,7 +2,7 @@
     "name": "devwael/wp-user-listing-table",
     "description": "WordPress plugin that provide users listing from a remote API on a custom URL endpoint.",
     "type": "wordpress-plugin",
-    "license": "MIT",
+    "license": "GPL-2.0+",
     "autoload": {
         "psr-4": {
             "WpUserListingTable\\": "src/"
