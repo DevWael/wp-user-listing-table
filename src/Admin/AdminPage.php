@@ -83,7 +83,7 @@ class AdminPage
             'wpul-table-settings-section', // section ID,
             [
                 'label_for' => 'wpul-table-slug',
-                'class' => 'hello',
+                'class' => 'wpul-slug-field',
                 'name' => 'wpul-table-slug',
                 'default' => 'user-listing-table',
                 'required' => true,
