@@ -34,8 +34,7 @@ class AdminPage
      */
     public function render(): void
     {
-        ?>
-        <div class="wrap">
+        ?><div class="wrap">
             <h1><?php
                 echo \esc_html(\get_admin_page_title()) ?></h1>
             <form method="post" action="options.php">
@@ -45,8 +44,7 @@ class AdminPage
                 \submit_button(); // "Save Changes" button
                 ?>
             </form>
-        </div>
-        <?php
+        </div><?php
     }
 
     /**

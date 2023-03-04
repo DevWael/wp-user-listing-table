@@ -40,8 +40,7 @@ class MenuNav
      */
     public function navMenuContent(): void
     {
-        ?>
-        <div id="users-list-link" class="users-list-link">
+        ?><div id="users-list-link" class="users-list-link">
             <div id="tabs-panel-users-list-table"
                  class="tabs-panel tabs-panel-active">
                 <ul id="users-list-table-inputs"
@@ -62,7 +61,7 @@ class MenuNav
                                 esc_attr_e('Users Table', 'wp-user-listing') ?>">
                         <input type="hidden" class="menu-item-url"
                                name="menu-item[-1][menu-item-url]" value="<?php
-                                echo esc_url(home_url('/user-listing-table')) ?>">
+                                echo esc_url(\home_url('/user-listing-table')) ?>">
                         <input type="hidden" class="menu-item-classes"
                                name="menu-item[-1][menu-item-classes]"
                                value="users-listing-table">
@@ -87,8 +86,7 @@ class MenuNav
                     <span class="spinner"></span>
                 </span>
             </p>
-        </div>
-        <?php
+        </div><?php
     }
 
     /**
