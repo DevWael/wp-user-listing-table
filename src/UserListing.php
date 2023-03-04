@@ -17,10 +17,14 @@ use WpUserListingTable\I18n\Languages;
   *
   * @package WpUserListingTable
   */
-class UserListing
+final class UserListing
 {
-    // Hold the class instance.
-    private static $instance = null;
+    /**
+     * Unique instance of the UserListing class.
+     *
+     * @var UserListing|null
+     */
+    private static ?UserListing $instance = null;
 
     /**
      * User_Listing constructor.
@@ -36,12 +40,12 @@ class UserListing
      */
     public static function instance(): self
     {
-        if (self::$instance === null) {
-            $instance = new self();
-            $instance->init();
+        if (null === self::$instance) {
+            self::$instance = new self();
+            self::$instance->init();
         }
 
-        return $instance;
+        return self::$instance;
     }
 
     /**
