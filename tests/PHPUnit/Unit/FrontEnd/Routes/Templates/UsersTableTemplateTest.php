@@ -42,6 +42,7 @@ class UsersTableTemplateTest extends AbstractUnitTestCase
      */
     public function testTemplateRegexReturnCorrectString()
     {
+        \WP_Mock::userFunction('get_option')->once()->andReturnArg(1);
         \WP_Mock::userFunction('sanitize_text_field')->andReturnArg(0);
         \WP_Mock::userFunction('untrailingslashit')->andReturn('user-listing-table');
         $usersTableTemplate = new UsersTableTemplate();
