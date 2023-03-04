@@ -180,7 +180,6 @@ class AdminPage
      */
     public function flushRewriteRules(): void
     {
-        \delete_option('wpul-rules-flag');
         \flush_rewrite_rules();
     }
 
