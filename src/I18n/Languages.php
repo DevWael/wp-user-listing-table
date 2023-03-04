@@ -13,7 +13,7 @@ class Languages
 {
     public function loadTextDomain(): void
     {
-        $languagesDirRelPath = dirname(plugin_basename(__FILE__), 3) . '/languages';
+        $languagesDirRelPath = dirname(\plugin_basename(__FILE__), 3) . '/languages';
         /**
          * Load plugin text domain
          */
