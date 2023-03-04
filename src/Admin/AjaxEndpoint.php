@@ -89,7 +89,7 @@ class AjaxEndpoint
         $nonce = $requestQuery['nonce'] ?? null;
         if (false === \wp_verify_nonce($nonce)) {
             throw new \InvalidArgumentException(
-                esc_html__('Failed to pass security check')
+                esc_html__('Failed to pass security check', 'wp-user-listing')
             );
         }
     }
@@ -106,13 +106,13 @@ class AjaxEndpoint
         $requestQuery = $this->request->get();
         if (! isset($requestQuery['user_id'])) {
             throw new \InvalidArgumentException(
-                esc_html__('User ID must be provided')
+                esc_html__('User ID must be provided', 'wp-user-listing')
             );
         }
         $requestUserId = \wp_unslash($requestQuery['user_id']);
         if (! $this->isValidUserId($requestUserId)) {
             throw new \InvalidArgumentException(
-                esc_html__('invalid user id')
+                esc_html__('invalid user id', 'wp-user-listing')
             );
         }
 

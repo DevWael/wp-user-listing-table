@@ -25,7 +25,7 @@ class MenuNav
     {
         add_meta_box(
             'users-list-table-box',
-            __('Users Table'),
+            esc_html__('Users Table', 'wp-user-listing'),
             [$this, 'navMenuContent'],
             'nav-menus',
             'side',
@@ -51,7 +51,7 @@ class MenuNav
                             <input type="checkbox" class="menu-item-checkbox"
                                    name="menu-item[-1][menu-item-object-id]"
                                    value="-1"> <?php
-                                    esc_html_e('Users Table') ?>
+                                    esc_html_e('Users Table', 'wp-user-listing') ?>
                         </label>
                         <input type="hidden" class="menu-item-type"
                                name="menu-item[-1][menu-item-type]"
@@ -59,7 +59,7 @@ class MenuNav
                         <input type="hidden" class="menu-item-title"
                                name="menu-item[-1][menu-item-title]"
                                value="<?php
-                                esc_attr_e('Users Table') ?>">
+                                esc_attr_e('Users Table', 'wp-user-listing') ?>">
                         <input type="hidden" class="menu-item-url"
                                name="menu-item[-1][menu-item-url]" value="<?php
                                 echo esc_url(home_url('/user-listing-table')) ?>">
@@ -75,13 +75,13 @@ class MenuNav
                     <input type="checkbox" id="users-table-tab"
                            class="select-all">
                     <label for="users-table-tab"><?php
-                        esc_html_e('Select All'); ?></label>
+                        esc_html_e('Select All', 'wp-user-listing'); ?></label>
                 </span>
                 <span class="add-to-menu">
                     <input type="submit"
                            class="button-secondary submit-add-to-menu right"
                            value="<?php
-                            esc_attr_e('Add to Menu'); ?>"
+                            esc_attr_e('Add to Menu', 'wp-user-listing'); ?>"
                            name="add-users-list-menu-item"
                            id="submit-users-list-link">
                     <span class="spinner"></span>

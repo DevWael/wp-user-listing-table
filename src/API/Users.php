@@ -93,7 +93,7 @@ class Users implements UsersClient
         ]);
         if (\is_wp_error($response)) {
             //Failed to contact the API
-            throw new RuntimeException('Failed to contact the API');
+            throw new RuntimeException(esc_html__('Failed to contact the API', 'wp-user-listing'));
         }
 
         $statusCode = \wp_remote_retrieve_response_code($response);
@@ -102,28 +102,28 @@ class Users implements UsersClient
             /**
              * Throw Exception if the request Unauthorized.
              */
-            throw new UnAuthorizedException('Unauthorized request');
+            throw new UnAuthorizedException(esc_html__('Unauthorized request', 'wp-user-listing'));
         }
 
         if (404 === $statusCode) {
             /**
              * Throw Exception if the request not found.
              */
-            throw new NotFoundException('Not found');
+            throw new NotFoundException(esc_html__('Not found', 'wp-user-listing'));
         }
 
         if (408 === $statusCode) {
             /**
              * Throw Exception if the request timed out.
              */
-            throw new TimedOutException('Request timeout');
+            throw new TimedOutException(esc_html__('Request timeout', 'wp-user-listing'));
         }
 
         if ($statusCode < 200 || $statusCode > 299) {
             /**
              * Throw Exception if the API responded with status code other than 2xx.
              */
-            throw new Exception('Something went wrong');
+            throw new Exception(esc_html__('Something went wrong', 'wp-user-listing'));
         }
 
         return \wp_remote_retrieve_body($response);
