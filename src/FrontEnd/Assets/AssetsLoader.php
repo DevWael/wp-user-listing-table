@@ -8,6 +8,8 @@ namespace WpUserListingTable\FrontEnd\Assets;
 
 /**
  * This class loads all frontend needed assets.
+ *
+ * @package WpUserListingTable\FrontEnd\Assets
  */
 class AssetsLoader implements Assets
 {

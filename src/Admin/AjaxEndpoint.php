@@ -11,6 +11,11 @@ use WpUserListingTable\API\Users;
 use WpUserListingTable\API\UsersCache;
 use WpUserListingTable\API\UsersClient;
 
+/**
+ * This class responsible for handling all ajax requests
+ *
+ * @package WpUserListingTable\Admin
+ */
 class AjaxEndpoint
 {
     /**

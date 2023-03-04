@@ -8,6 +8,8 @@ namespace WpUserListingTable\I18n;
 
 /**
  * Load plugin text domain
+ *
+ * @package WpUserListingTable\I18n
  */
 class Languages
 {

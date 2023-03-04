@@ -8,6 +8,8 @@ namespace WpUserListingTable\API;
 
 /**
  * This class provides the caching functionality for the API.
+ *
+ * @package WpUserListingTable\API
  */
 class UsersCache implements Cache
 {

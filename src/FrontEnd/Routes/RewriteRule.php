@@ -72,12 +72,11 @@ class RewriteRule implements Rule
         \add_rewrite_rule($regex, $query, 'top');
 
         /**
-         * Set the rewrite rule as added
-         */
-        \update_option('wpul-rules-flag', true, false);
-
-        /**
-         * todo add comment for this action
+         * This action is being fired after wp init action and after registering
+         * the rewrite rule.
+         *
+         * @param string $regex the rewrite rule regex
+         * @param string $query the rewrite rule query
          */
         \do_action(
             'wp_users_table_rewrite_rule_added',

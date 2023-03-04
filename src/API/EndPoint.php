@@ -8,6 +8,8 @@ namespace WpUserListingTable\API;
 
 /**
  * This class defines the endpoints for the API calls
+ *
+ * @package WpUserListingTable\API
  */
 class EndPoint implements ApiEndpoint
 {

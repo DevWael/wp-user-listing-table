@@ -12,6 +12,8 @@ namespace WpUserListingTable\Admin;
  *
  * Adapted from:
  * https://www.johnmorrisonline.com/how-to-add-a-fully-functional-custom-meta-box-to-wordpress-navigation-menus/.
+ *
+ * @package WpUserListingTable\FrontEnd\Routes
  */
 class MenuNav
 {

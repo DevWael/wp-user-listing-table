@@ -14,6 +14,8 @@ use WpUserListingTable\Exceptions\UnAuthorizedException;
 
 /**
  * This class provides the functionality to contact the API to get the users data.
+ *
+ * @package WpUserListingTable\API
  */
 class Users implements UsersClient
 {

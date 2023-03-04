@@ -11,6 +11,8 @@ namespace WpUserListingTable\FrontEnd\Routes\Templates;
  * 1. Template file path.
  * 2. Template regex.
  * 3. Template query.
+ *
+ * @package WpUserListingTable\FrontEnd\Routes\Templates
  */
 class UsersTableTemplate implements Template
 {
