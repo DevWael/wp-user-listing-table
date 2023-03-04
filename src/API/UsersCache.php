@@ -26,11 +26,11 @@ class UsersCache implements Cache
         // Check if the key exists in the cache.
         if ($data && \is_array($data)) {
             // If it does, return the cached data.
-            return $data;
+            return \apply_filters('wp_users_table_get_cached_data', $data, $key);
         }
 
         // If it doesn't, return empty array.
-        return [];
+        return \apply_filters('wp_users_table_get_cached_data', [], $key);
     }
 
     /**
@@ -45,7 +45,11 @@ class UsersCache implements Cache
     {
         $key = 'WPUL_' . $key;
         // Add the data to the cache with the given key.
-        \set_transient($key, $data, $expiration);
+        \set_transient(
+            $key,
+            \apply_filters('wp_users_table_set_cache_data', $data),
+            \apply_filters('wp_users_table_cache_expiration_time', $expiration, $data, $key)
+        );
     }
 
     public function purge(string $key): void
