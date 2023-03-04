@@ -1,0 +1,157 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WP User Listing Table\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-04 19:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.3; wp-6.1.1\n"
+"X-Domain: wp-user-listing"
+
+#: src/Admin/MenuNav.php:85
+msgid "Add to Menu"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:88
+msgid "Address"
+msgstr ""
+
+#. Author of the plugin
+msgid "Ahmad Wael"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:99
+msgid "Business"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:98
+msgid "Catchphrase"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:91
+msgid "City"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:96
+msgid "Company"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:86
+msgid "Email"
+msgstr ""
+
+#: src/API/Users.php:98
+msgid "Failed to contact the API"
+msgstr ""
+
+#: src/Admin/AjaxEndpoint.php:97
+msgid "Failed to pass security check"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/DevWael/wp-user-listing-table"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.bbioon.com"
+msgstr ""
+
+#: templates/users-table.php:60 src/FrontEnd/Assets/AssetsLoader.php:83
+msgid "ID"
+msgstr ""
+
+#: src/Admin/AjaxEndpoint.php:120
+msgid "invalid user id"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:93
+msgid "Latitude"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:94
+msgid "Longitude"
+msgstr ""
+
+#: templates/users-table.php:62 src/FrontEnd/Assets/AssetsLoader.php:84
+#: src/FrontEnd/Assets/AssetsLoader.php:97
+msgid "Name"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:100
+msgid "Network error, please check your internet connection!"
+msgstr ""
+
+#: src/API/Users.php:114
+msgid "Not found"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:87
+msgid "Phone"
+msgstr ""
+
+#: src/API/Users.php:121
+msgid "Request timeout"
+msgstr ""
+
+#: src/Admin/MenuNav.php:79
+msgid "Select All"
+msgstr ""
+
+#: src/API/Users.php:128
+msgid "Something went wrong"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:89
+msgid "Street"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:90
+msgid "Suite"
+msgstr ""
+
+#: src/API/Users.php:107
+msgid "Unauthorized request"
+msgstr ""
+
+#: src/Admin/AjaxEndpoint.php:114
+msgid "User ID must be provided"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:82
+msgid "User Information"
+msgstr ""
+
+#: templates/users-table.php:64 src/FrontEnd/Assets/AssetsLoader.php:85
+msgid "Username"
+msgstr ""
+
+#: src/Admin/MenuNav.php:30 src/Admin/MenuNav.php:55 src/Admin/MenuNav.php:63
+#: src/FrontEnd/Routes/RewriteRule.php:144
+msgid "Users Table"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:95
+msgid "Website"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"WordPress plugin that provide users listing from a remote API on a custom "
+"URL endpoint."
+msgstr ""
+
+#. Name of the plugin
+msgid "WP User Listing Table"
+msgstr ""
+
+#: src/FrontEnd/Assets/AssetsLoader.php:92
+msgid "Zip Code"
+msgstr ""
