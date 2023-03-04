@@ -1,18 +1,29 @@
 name: PHP Tests
-
-on:
-  push:
-    branches:
-      - master
-
+on: [ push ]
 jobs:
-  php-version:
+  # Check for any syntax errors in the files.
+  lint-php:
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    uses: inpsyde/reusable-workflows/.github/workflows/lint-php.yml@main
+    with:
+      PHP_MATRIX: >-
+        [7.4, 8.0, 8.1, 8.2]
+  # Check if the code follows the coding standards.
+  coding-standards-analysis-php:
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    needs: lint-php
+    uses: inpsyde/reusable-workflows/.github/workflows/coding-standards-php.yml@main
+
+  # Run php unit tests.
+  php-unit-tests:
+    needs: [ coding-standards-analysis-php ]
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+
     strategy:
       matrix:
-        php-version: [7.4, 8.0, 8.1]
-
-    runs-on: ubuntu-latest
-
+        # Run on several php versions.
+        php-version: [7.4, 8.0, 8.1, 8.2]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -22,27 +33,30 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
 
+        # Check if the vendor directory is available in the cache.
       - name: Cache Composer dependencies
+        id: composer-cache
         uses: actions/cache@v2
         with:
           path: vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}-${{ matrix.php-version }}
+          key: ${{ runner.os }}-composer-${{ matrix.php-version }}
           restore-keys: |
             ${{ runner.os }}-composer-${{ matrix.php-version }}-
 
+        # Do composer install only if the vendor directory not cached.
       - name: Install dependencies
-        run: composer install
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install -q -n -a --no-progress --prefer-dist
 
-      - name: Run PHPCS
-        run: vendor/bin/phpcs
-
+        # Run composer script to run phpunit tests.
       - name: Run PHPUnit
-        run: vendor/bin/phpunit
+        run: composer tests:codecov
 
+        # Upload test report to CodeCov.
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/index.html
+          files: ./coverage.xml
           flags: php-unit-tests
           name: codecov-umbrella
