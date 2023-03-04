@@ -27,21 +27,74 @@ final class UserListing
     private static ?UserListing $instance = null;
 
     /**
+     * @var AdminPage instance of the admin page
+     */
+    private AdminPage $adminPage;
+
+    /**
+     * @var MenuNav instance of the menu
+     */
+    private MenuNav $menuNav;
+
+    /**
+     * @var AjaxEndpoint instance of the ajax class
+     */
+    private AjaxEndpoint $ajaxEndpoint;
+
+    /**
+     * @var Loader instance of the frontend loader
+     */
+    private Loader $frontEndLoader;
+
+    /**
+     * @var Languages instance of languages and text domain loader
+     */
+    private Languages $languages;
+
+    /**
      * User_Listing constructor.
      */
-    private function __construct()
-    {
+    private function __construct(
+        AdminPage $adminPage,
+        MenuNav $menuNav,
+        AjaxEndpoint $ajaxEndpoint,
+        Loader $loader,
+        Languages $languages
+    ) {
+
+        $this->adminPage = $adminPage;
+        $this->menuNav = $menuNav;
+        $this->ajaxEndpoint = $ajaxEndpoint;
+        $this->frontEndLoader = $loader;
+        $this->languages = $languages;
     }
 
     /**
      * Load class singleton instance.
      *
-     * @return UserListing
+     * @param  AdminPage|null     $adminPage     instance of AdminPage object.
+     * @param  MenuNav|null       $menuNav       instance of MenuNav object.
+     * @param  AjaxEndpoint|null  $ajaxEndpoint  instance of AjaxEndpoint object.
+     * @param  Loader|null        $loader        instance of frontend Loader object.
+     * @param  Languages|null     $languages     instance of Languages object.
+     *
+     * @return UserListing singleton instance
      */
-    public static function instance(): self
-    {
+    public static function instance(
+        AdminPage $adminPage = null,
+        MenuNav $menuNav = null,
+        AjaxEndpoint $ajaxEndpoint = null,
+        Loader $loader = null,
+        Languages $languages = null
+    ): self {
+
         if (null === self::$instance) {
-            self::$instance = new self();
+            $adminPageObject = $adminPage ?? new AdminPage(); // new instance of AdminPage object
+            $menuNavObject = $menuNav ?? new MenuNav(); // new instance of MenuNav object
+            $ajaxEndpointObject = $ajaxEndpoint ?? new AjaxEndpoint(); // new instance of AjaxEndpoint object
+            $loaderObject = $loader ?? new Loader(); // new instance of frontend Loader object
+            $languagesObject = $languages ?? new Languages(); // new instance of Languages object
+            self::$instance = new self($adminPageObject, $menuNavObject, $ajaxEndpointObject, $loaderObject, $languagesObject);
             self::$instance->init();
         }
 
@@ -53,30 +106,26 @@ final class UserListing
      */
     public function init()
     {
-        if (wp_installing()) {
+        if (\wp_installing()) {
             return; //prevent loading when we are installing WordPress
         }
-        if (is_admin()) {
-            /**
-             * Load all admin side logic
-             */
-            $adminPage = new AdminPage();
-            $adminPage->init();
+
+        /**
+         * Load all admin side logic
+         */
+        if (\is_admin()) {
+            $this->adminPage->init(); //load all admin page actions
+
+            $this->menuNav->init(); // load all menu nav actions
+
+            $this->ajaxEndpoint->init(); // load all Ajax functionality
         }
-        //todo: reorganize class instances here
-        $menu = new MenuNav();
-        $menu->init();
 
-        $ajax = new AjaxEndpoint();
-        $ajax->init();
-
-        $lang = new Languages();
-        $lang->init();
+        $this->languages->init(); // load all languages
 
         /**
          * Load all frontend logic.
          */
-        $frontEnd = new Loader();
-        $frontEnd->init();
+        $this->frontEndLoader->init();
     }
 }
