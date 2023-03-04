@@ -23,13 +23,19 @@ class UsersTableTemplate implements Template
      */
     public function templatePath(): string
     {
-        $path = dirname(__FILE__, 5) . '/templates/users-table.php';
-        $themeFile = \get_template_directory() . '/user-listing-table/users-table.php';
-        if (\file_exists($themeFile)) { //check if the file exists inside the active theme
-            $path = $themeFile;
+        $template = \locate_template('user-listing-table/users-table.php');
+
+        /**
+         * Check if the file located in the active theme, then load it.
+         */
+        if ($template) {
+            return $template;
         }
 
-        return $path;
+        /**
+         * Load the plugin provided template file.
+         */
+        return dirname(__FILE__, 5) . '/templates/users-table.php';
     }
 
     /**
