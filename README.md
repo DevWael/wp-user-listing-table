@@ -1,7 +1,7 @@
 # WP User Listing Table
 
-[![PHP Tests](https://github.com/DevWael/Ahmad-Wael-wp-user-listing-table/actions/workflows/php-tests.yml/badge.svg)](https://github.com/DevWael/Ahmad-Wael-wp-user-listing-table/actions/workflows/php-tests.yml)
-
+[![codecov](https://codecov.io/gh/DevWael/Ahmad-Wael-wp-user-listing-table/branch/master/graph/badge.svg?token=TE15JJ37F6)](https://codecov.io/gh/DevWael/Ahmad-Wael-wp-user-listing-table)
+[![PHP Tests](https://github.com/DevWael/Ahmad-Wael-wp-user-listing-table/actions/workflows/php-tests.yml/badge.svg?branch=master)](https://github.com/DevWael/Ahmad-Wael-wp-user-listing-table/actions/workflows/php-tests.yml)
 
 WP User Listing Table is a WordPress plugin that provides a front-end portal to preview the users being fetched from a remote API. It uses WP rewrite rules API to create a frontend page,  `wp_remote_*()` functions to call the remote API, `*_transient()` functions for the caching mechanism, adds custom nav menu meta box and also provide an admin options page to be able to set the frontend page slug.
 
