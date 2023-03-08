@@ -23,6 +23,10 @@
     background: linear-gradient(to bottom, #fff 0%, #f9f9f9 100%);
 }
 
+.wp-users-table caption{
+    display: none;
+}
+
 /* Style table header */
 .wp-users-table th {
     background-color: #4c4c4c;
