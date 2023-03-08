@@ -123,7 +123,7 @@ class RewriteRule implements Rule
              * /user-listing-table/users-table.php
              */
             return \apply_filters(
-                'wp_user_listing_template_path',
+                'wp_users_table_template_path',
                 $this->template->templatePath()
             );
         }
@@ -142,7 +142,7 @@ class RewriteRule implements Rule
     {
         if (\get_query_var('table_template') === 'user-listing-table') {
             $title = esc_html__('Users Table', 'wp-user-listing');
-            $titleParts['title'] = apply_filters('wp_user_listing_template_tab_title', $title);
+            $titleParts['title'] = apply_filters('wp_users_table_template_tab_title', $title);
         }
 
         return $titleParts;
