@@ -54,13 +54,14 @@ $users = apply_filters('wp_user_table_users_list', $usersProvider->usersList());
             <div class="table-wrapper">
                 <table id="usersTable"
                        class="wp-users-table wp-users-table-js has-background">
+                    <caption><?php esc_html_e('List of Users', 'wp-user-listing') ?></caption>
                     <thead>
                     <tr>
-                        <th><?php
+                        <th id="idHeader" scope="col"><?php
                             esc_html_e('ID', 'wp-user-listing') ?></th>
-                        <th><?php
+                        <th id="nameHeader" scope="col"><?php
                             esc_html_e('Name', 'wp-user-listing') ?></th>
-                        <th><?php
+                        <th id="usernameHeader" scope="col"><?php
                             esc_html_e('Username', 'wp-user-listing') ?></th>
                     </tr>
                     </thead>
@@ -78,9 +79,9 @@ $users = apply_filters('wp_user_table_users_list', $usersProvider->usersList());
                         $userName = $user['username'] ?? '';
                     ?>
                         <tr>
-                            <td data-user-id="<?php echo esc_attr($userID) ?>"><?php echo esc_html($userID) ?></td>
-                            <td data-user-id="<?php echo esc_attr($userID) ?>"><?php echo esc_html($name) ?></td>
-                            <td data-user-id="<?php echo esc_attr($userID) ?>"><?php echo esc_html($userName) ?></td>
+                            <td headers="idHeader" data-user-id="<?php echo esc_attr($userID) ?>"><?php echo esc_html($userID) ?></td>
+                            <td headers="nameHeader" data-user-id="<?php echo esc_attr($userID) ?>"><?php echo esc_html($name) ?></td>
+                            <td headers="usernameHeader" data-user-id="<?php echo esc_attr($userID) ?>"><?php echo esc_html($userName) ?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
