@@ -7,8 +7,8 @@ WP User Listing Table is a WordPress plugin that provides a front-end portal to 
 
 ## Table of content
 - [Installation](#installation)
-    * [Using Composer :](#using-composer-)
-    * [Using Release assets:](#using-release-assets)
+    * [Using Composer](#using-composer-)
+    * [Using Release assets](#using-release-assets)
     * [Requirements](#requirements)
 - [Usage  & Features](#usage---features)
     * [Admin Menu Page](#admin-menu-page)
@@ -33,7 +33,7 @@ WP User Listing Table is a WordPress plugin that provides a front-end portal to 
 
 To install the plugin, there are two methods:
 
-### Using Composer :
+### Using Composer:
 Clone this repository in the WordPress plugins directory and do `composer install --no-dev` in your terminal, then go to your dashboard and activate the plugin.
 
 ### Using Release assets:
