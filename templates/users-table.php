@@ -44,9 +44,9 @@ if (!$blockTheme) {
 /**
  * Use this action to add content above the users table.
  */
-do_action('wp_user_table_start');
+do_action('wp_users_table_before_table');
 $usersProvider = new WpUserListingTable\FrontEnd\Data\UsersProvider();
-$users = apply_filters('wp_user_table_users_list', $usersProvider->usersList());
+$users = apply_filters('wp_users_table_users_list_template', $usersProvider->usersList());
 ?>
     <div class="wp-users-table-template">
         <?php
@@ -96,7 +96,7 @@ $users = apply_filters('wp_user_table_users_list', $usersProvider->usersList());
 /**
  * Use this action to add content below the users table.
  */
-do_action('wp_user_table_end');
+do_action('wp_users_table_after_table');
 
 /**
  * Check if the installed theme is block theme (FSE Themes).
