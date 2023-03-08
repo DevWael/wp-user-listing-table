@@ -1,6 +1,10 @@
-<?php # -*- coding: utf-8 -*-
+<?php
 
-namespace PHPUnit\Unit;
+# -*- coding: utf-8 -*-
+
+declare(strict_types=1);
+
+namespace WpUserListingTable\PHPUnit\Unit;
 
 use WpUserListingTable\PHPUnit\Unit\AbstractUnitTestCase;
 use WpUserListingTable\UserListing;
@@ -40,6 +44,6 @@ class UserListingTest extends AbstractUnitTestCase
         } catch (\Throwable $exception) {
             $this->fail($exception->getMessage());
         }
-        $this->assertTrue(TRUE);
+        $this->assertTrue(true);
     }
 }

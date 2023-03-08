@@ -1,6 +1,10 @@
-<?php # -*- coding: utf-8 -*-
+<?php
 
-namespace PHPUnit\Unit\Exceptions;
+# -*- coding: utf-8 -*-
+
+declare(strict_types=1);
+
+namespace WpUserListingTable\PHPUnit\Unit\Exceptions;
 
 use WpUserListingTable\Exceptions\TimedOutException;
 use WpUserListingTable\PHPUnit\Unit\AbstractUnitTestCase;

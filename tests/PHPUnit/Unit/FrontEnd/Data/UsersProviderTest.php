@@ -1,6 +1,10 @@
-<?php # -*- coding: utf-8 -*-
+<?php
 
-namespace PHPUnit\Unit\FrontEnd\Data;
+# -*- coding: utf-8 -*-
+
+declare(strict_types=1);
+
+namespace WpUserListingTable\PHPUnit\Unit\FrontEnd\Data;
 
 use WpUserListingTable\API\Users;
 use WpUserListingTable\API\UsersCache;
@@ -9,7 +13,6 @@ use WpUserListingTable\PHPUnit\Unit\AbstractUnitTestCase;
 
 class UsersProviderTest extends AbstractUnitTestCase
 {
-
     /**
      * Test if fetch users method returns the correct array of users
      *
@@ -28,7 +31,7 @@ class UsersProviderTest extends AbstractUnitTestCase
          * Mock cache class and it's methods
          */
         $cache = \Mockery::mock(UsersCache::class);
-        $cache->shouldReceive('get')->andReturn(array());
+        $cache->shouldReceive('get')->andReturn([]);
         $cache->shouldReceive('set');
 
         $usersProvider = new UsersProvider($usersClient, $cache);
@@ -46,12 +49,12 @@ class UsersProviderTest extends AbstractUnitTestCase
     public function testUsersListReturnEmptyArray(): void
     {
         $usersClient = \Mockery::mock(Users::class);
-        $usersClient->shouldReceive('users')->andReturnUsing(function (){
-           throw new \InvalidArgumentException('bad users');
+        $usersClient->shouldReceive('users')->andReturnUsing(static function () {
+            throw new \InvalidArgumentException('bad users');
         });
 
         $cache = \Mockery::mock(UsersCache::class);
-        $cache->shouldReceive('get')->andReturn(array());
+        $cache->shouldReceive('get')->andReturn([]);
         $cache->shouldReceive('set');
 
         $usersProvider = new UsersProvider($usersClient, $cache);
@@ -71,7 +74,7 @@ class UsersProviderTest extends AbstractUnitTestCase
         $usersClient->shouldReceive('users')->andReturn(['users' => []]);
 
         $cache = \Mockery::mock(UsersCache::class);
-        $cache->shouldReceive('get')->andReturn(array());
+        $cache->shouldReceive('get')->andReturn([]);
         $cache->shouldReceive('set');
 
         $usersProvider = new UsersProvider($usersClient, $cache);

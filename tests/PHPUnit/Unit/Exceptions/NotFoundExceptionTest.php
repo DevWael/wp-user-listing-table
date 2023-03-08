@@ -1,13 +1,16 @@
 <?php
 
-namespace PHPUnit\Unit\Exceptions;
+# -*- coding: utf-8 -*-
+
+declare(strict_types=1);
+
+namespace WpUserListingTable\PHPUnit\Unit\Exceptions;
 
 use WpUserListingTable\Exceptions\NotFoundException;
 use WpUserListingTable\PHPUnit\Unit\AbstractUnitTestCase;
 
 class NotFoundExceptionTest extends AbstractUnitTestCase
 {
-
     /**
      * Test if the given message equals the expected
      *

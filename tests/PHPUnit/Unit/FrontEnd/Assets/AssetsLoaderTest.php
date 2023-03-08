@@ -1,6 +1,10 @@
-<?php # -*- coding: utf-8 -*-
+<?php
 
-namespace PHPUnit\Unit\FrontEnd\Assets;
+# -*- coding: utf-8 -*-
+
+declare(strict_types=1);
+
+namespace WpUserListingTable\PHPUnit\Unit\FrontEnd\Assets;
 
 use WpUserListingTable\FrontEnd\Assets\AssetsLoader;
 use WpUserListingTable\PHPUnit\Unit\AbstractUnitTestCase;

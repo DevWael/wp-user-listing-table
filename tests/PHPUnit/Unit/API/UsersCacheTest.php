@@ -1,9 +1,13 @@
-<?php # -*- coding: utf-8 -*-
+<?php
 
-namespace PHPUnit\Unit\API;
+# -*- coding: utf-8 -*-
 
-use WpUserListingTable\API\UsersCache;
+declare(strict_types=1);
+
+namespace WpUserListingTable\PHPUnit\Unit\API;
+
 use WpUserListingTable\PHPUnit\Unit\AbstractUnitTestCase;
+use WpUserListingTable\API\UsersCache;
 
 class UsersCacheTest extends AbstractUnitTestCase
 {

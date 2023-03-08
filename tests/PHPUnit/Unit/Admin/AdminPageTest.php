@@ -1,13 +1,16 @@
-<?php # -*- coding: utf-8 -*-
+<?php
 
-namespace PHPUnit\Unit\Admin;
+# -*- coding: utf-8 -*-
+
+declare(strict_types=1);
+
+namespace WpUserListingTable\PHPUnit\Unit\Admin;
 
 use WpUserListingTable\Admin\AdminPage;
 use WpUserListingTable\PHPUnit\Unit\AbstractUnitTestCase;
 
 class AdminPageTest extends AbstractUnitTestCase
 {
-
     /**
      *  Test register method works properly.
      *
@@ -40,8 +43,8 @@ class AdminPageTest extends AbstractUnitTestCase
         $adminPage = new AdminPage();
         $adminPage->render();
         $output = ob_get_clean();
-        $this->assertStringStartsWith('<div class="wrap">',$output);
-        $this->assertStringEndsWith('</div>',$output);
+        $this->assertStringStartsWith('<div class="wrap">', $output);
+        $this->assertStringEndsWith('</div>', $output);
     }
 
     /**
@@ -83,8 +86,8 @@ class AdminPageTest extends AbstractUnitTestCase
         $adminPage = new AdminPage();
         $adminPage->textField($fieldArgs);
         $output = ob_get_clean();
-        $this->assertStringStartsWith('<input required',$output);
-        $this->assertStringEndsWith('description message</p>',$output);
+        $this->assertStringStartsWith('<input required', $output);
+        $this->assertStringEndsWith('description message</p>', $output);
     }
 
     /**
@@ -101,7 +104,7 @@ class AdminPageTest extends AbstractUnitTestCase
         $adminPage = new AdminPage();
         $result = $adminPage->sanitize('abcd');
 
-        $this->assertStringContainsString('user-listing-table',$result);
+        $this->assertStringContainsString('user-listing-table', $result);
     }
 
     /**
@@ -119,7 +122,7 @@ class AdminPageTest extends AbstractUnitTestCase
         $adminPage = new AdminPage();
         $result = $adminPage->sanitize('we-should-have-string-with-more-than-50-characters.');
 
-        $this->assertStringContainsString('user-listing-table',$result);
+        $this->assertStringContainsString('user-listing-table', $result);
     }
 
     /**
@@ -135,7 +138,7 @@ class AdminPageTest extends AbstractUnitTestCase
         $adminPage = new AdminPage();
         $result = $adminPage->sanitize('user-listing-table');
 
-        $this->assertStringContainsString('user-listing-table',$result);
+        $this->assertStringContainsString('user-listing-table', $result);
     }
 
     /**
@@ -152,7 +155,7 @@ class AdminPageTest extends AbstractUnitTestCase
         $adminPage = new AdminPage();
         $result = $adminPage->sanitize('user-/listing##-table?');
 
-        $this->assertStringContainsString('user-listing-table',$result);
+        $this->assertStringContainsString('user-listing-table', $result);
     }
 
     /**
@@ -181,9 +184,12 @@ class AdminPageTest extends AbstractUnitTestCase
     public function testInit(): void
     {
         $adminPage = new AdminPage();
-        \WP_Mock::expectActionAdded('admin_init',[$adminPage,'settingsFields']);
-        \WP_Mock::expectActionAdded('admin_menu',[$adminPage,'register']);
-        \WP_Mock::expectActionAdded('update_option_wpul-table-slug',[$adminPage,'flushRewriteRules']);
+        \WP_Mock::expectActionAdded('admin_init', [$adminPage, 'settingsFields']);
+        \WP_Mock::expectActionAdded('admin_menu', [$adminPage, 'register']);
+        \WP_Mock::expectActionAdded(
+            'update_option_wpul-table-slug',
+            [$adminPage, 'flushRewriteRules']
+        );
         $adminPage->init();
         \WP_Mock::assertActionsCalled();
     }

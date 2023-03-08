@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-namespace PHPUnit\Unit\FrontEnd\Routes\Templates;
+namespace WpUserListingTable\PHPUnit\Unit\FrontEnd\Routes\Templates;
 
 use WpUserListingTable\FrontEnd\Routes\Templates\UsersTableTemplate;
 use WpUserListingTable\PHPUnit\Unit\AbstractUnitTestCase;
@@ -18,9 +18,14 @@ class UsersTableTemplateTest extends AbstractUnitTestCase
      */
     public function testTemplatePathThemeFile(): void
     {
-        \WP_Mock::userFunction('locate_template')->once()->andReturn('user-listing-table/users-table.php');
+        \WP_Mock::userFunction('locate_template')
+            ->once()
+            ->andReturn('user-listing-table/users-table.php');
         $usersTableTemplate = new UsersTableTemplate();
-        $this->assertStringContainsString('user-listing-table/users-table.php',$usersTableTemplate->templatePath());
+        $this->assertStringContainsString(
+            'user-listing-table/users-table.php',
+            $usersTableTemplate->templatePath()
+        );
     }
 
     /**
@@ -32,7 +37,10 @@ class UsersTableTemplateTest extends AbstractUnitTestCase
     {
         \WP_Mock::userFunction('locate_template')->once()->andReturn('');
         $usersTableTemplate = new UsersTableTemplate();
-        $this->assertStringEndsWith('/templates/users-table.php',$usersTableTemplate->templatePath());
+        $this->assertStringEndsWith(
+            '/templates/users-table.php',
+            $usersTableTemplate->templatePath()
+        );
     }
 
     /**

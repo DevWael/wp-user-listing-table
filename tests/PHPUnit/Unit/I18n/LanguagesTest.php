@@ -1,6 +1,10 @@
 <?php
 
-namespace PHPUnit\Unit\I18n;
+# -*- coding: utf-8 -*-
+
+declare(strict_types=1);
+
+namespace WpUserListingTable\PHPUnit\Unit\I18n;
 
 use WpUserListingTable\I18n\Languages;
 use WpUserListingTable\PHPUnit\Unit\AbstractUnitTestCase;
@@ -33,7 +37,7 @@ class LanguagesTest extends AbstractUnitTestCase
     public function testinit(): void
     {
         $languages = new Languages();
-        \WP_Mock::expectActionAdded('plugins_loaded',[$languages,'loadTextDomain']);
+        \WP_Mock::expectActionAdded('plugins_loaded', [$languages, 'loadTextDomain']);
         $languages->init();
         \WP_Mock::assertActionsCalled();
     }

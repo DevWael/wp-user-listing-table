@@ -1,6 +1,10 @@
-<?php # -*- coding: utf-8 -*-
+<?php
 
-namespace PHPUnit\Unit\Admin;
+# -*- coding: utf-8 -*-
+
+declare(strict_types=1);
+
+namespace WpUserListingTable\PHPUnit\Unit\Admin;
 
 use WpUserListingTable\Admin\AjaxEndpoint;
 use WpUserListingTable\Admin\Request;
@@ -42,10 +46,10 @@ class AjaxEndpointTest extends AbstractUnitTestCase
         ]);
 
         \WP_Mock::userFunction('wp_send_json_error');
-        try{
+        try {
             $ajax = new AjaxEndpoint();
             $ajax->wpRequest();
-        } catch(\Throwable $exception){
+        } catch (\Throwable $exception) {
             $this->fail($exception->getMessage());
         }
 
@@ -59,27 +63,27 @@ class AjaxEndpointTest extends AbstractUnitTestCase
      */
     public function testWpRequestGetSingleUserSuccess(): void
     {
-        $users = \Mockery::mock( UsersClient::class );
+        $users = \Mockery::mock(UsersClient::class);
         $users->shouldReceive('userById')->with('17')->andReturn([
-            'data'
+            'data',
         ]);
 
-        $cache = \Mockery::mock( Cache::class );
-        $cache->shouldReceive('get')->andReturn(array('data'));
+        $cache = \Mockery::mock(Cache::class);
+        $cache->shouldReceive('get')->andReturn(['data']);
 
-        $request = \Mockery::mock( Request::class );
+        $request = \Mockery::mock(Request::class);
         $request->shouldReceive('get')->andReturn(['user_id' => '17']);
 
         \WP_Mock::userFunction('wp_unslash')->andReturnArg(0);
-        \WP_Mock::userFunction('absint')->andReturnUsing(function($id){
+        \WP_Mock::userFunction('absint')->andReturnUsing(static function (string $id): int {
             return (int) $id;
         });
         \WP_Mock::userFunction('wp_send_json_success');
 
-        try{
-            $ajax = new AjaxEndpoint($users,$cache,$request);
+        try {
+            $ajax = new AjaxEndpoint($users, $cache, $request);
             $ajax->wpRequest();
-        } catch(\Throwable $exception){
+        } catch (\Throwable $exception) {
             $this->fail($exception->getMessage());
         }
 
@@ -94,16 +98,16 @@ class AjaxEndpointTest extends AbstractUnitTestCase
      */
     public function testUserIdInvalid(): void
     {
-        $users = \Mockery::mock( UsersClient::class );
+        $users = \Mockery::mock(UsersClient::class);
         $users->shouldReceive('userById')->with('0')->andReturn([
-            'data'
+            'data',
         ]);
-        $cache = \Mockery::mock( Cache::class );
-        $cache->shouldReceive('get')->andReturn(array('data'));
-        $request = \Mockery::mock( Request::class );
+        $cache = \Mockery::mock(Cache::class);
+        $cache->shouldReceive('get')->andReturn(['data']);
+        $request = \Mockery::mock(Request::class);
         $request->shouldReceive('get')->andReturn(['user_id' => '0']);
         \WP_Mock::userFunction('wp_unslash')->once()->andReturnArg(0);
-        $ajax = new AjaxEndpoint($users,$cache,$request);
+        $ajax = new AjaxEndpoint($users, $cache, $request);
         $this->expectException(\InvalidArgumentException::class);
         $ajax->verifyUserId();
     }
@@ -116,16 +120,16 @@ class AjaxEndpointTest extends AbstractUnitTestCase
      */
     public function testNoProvidedUserIdShouldThrowException(): void
     {
-        $users = \Mockery::mock( UsersClient::class );
+        $users = \Mockery::mock(UsersClient::class);
         $users->shouldReceive('userById')->with('0')->andReturn([
-            'data'
+            'data',
         ]);
-        $cache = \Mockery::mock( Cache::class );
-        $cache->shouldReceive('get')->andReturn(array('data'));
-        $request = \Mockery::mock( Request::class );
+        $cache = \Mockery::mock(Cache::class);
+        $cache->shouldReceive('get')->andReturn(['data']);
+        $request = \Mockery::mock(Request::class);
         $request->shouldReceive('get')->andReturn(['user' => '12']);
         \WP_Mock::userFunction('wp_send_json_error');
-        $ajax = new AjaxEndpoint($users,$cache,$request);
+        $ajax = new AjaxEndpoint($users, $cache, $request);
         $this->expectException(\InvalidArgumentException::class);
         $result = $ajax->verifyUserId();
         $this->assertSame(0, $result);
@@ -139,17 +143,17 @@ class AjaxEndpointTest extends AbstractUnitTestCase
     public function testSingleUsersShouldNotReturnEmptyArray(): void
     {
         $userId = 10;
-        $users = \Mockery::mock( UsersClient::class );
-        $users->shouldReceive('userById')->once()->with($userId)->andReturn(array('data'));
+        $users = \Mockery::mock(UsersClient::class);
+        $users->shouldReceive('userById')->once()->with($userId)->andReturn(['data']);
 
-        $cache = \Mockery::mock( Cache::class );
-        $cache->shouldReceive('get')->once()->with('wp_user_listing_' . $userId)->andReturn(array());
+        $cache = \Mockery::mock(Cache::class);
+        $cache->shouldReceive('get')->once()->with('wp_user_listing_' . $userId)->andReturn([]);
         $cache->shouldReceive('set')->once();
 
-        $request = \Mockery::mock( Request::class );
+        $request = \Mockery::mock(Request::class);
         $request->shouldReceive('get')->andReturn(['user_id' => 137]);
 
-        $ajax = new AjaxEndpoint($users,$cache,$request);
+        $ajax = new AjaxEndpoint($users, $cache, $request);
         $result = $ajax->singleUserDetails($userId);
         $this->assertCount(1, $result);
         $this->assertIsArray($result);
@@ -163,8 +167,8 @@ class AjaxEndpointTest extends AbstractUnitTestCase
     public function testInitContainsActions(): void
     {
         $ajax = new AjaxEndpoint();
-        \WP_Mock::expectActionAdded('wp_ajax_users_table_request',[$ajax,'wpRequest']);
-        \WP_Mock::expectActionAdded('wp_ajax_nopriv_users_table_request',[$ajax,'wpRequest']);
+        \WP_Mock::expectActionAdded('wp_ajax_users_table_request', [$ajax, 'wpRequest']);
+        \WP_Mock::expectActionAdded('wp_ajax_nopriv_users_table_request', [$ajax, 'wpRequest']);
         $ajax->init();
         \WP_Mock::assertActionsCalled();
     }

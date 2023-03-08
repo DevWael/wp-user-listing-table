@@ -1,6 +1,10 @@
-<?php # -*- coding: utf-8 -*-
+<?php
 
-namespace PHPUnit\Unit\API;
+# -*- coding: utf-8 -*-
+
+declare(strict_types=1);
+
+namespace WpUserListingTable\PHPUnit\Unit\API;
 
 use WpUserListingTable\API\EndPoint;
 use WpUserListingTable\API\Users;
@@ -64,10 +68,12 @@ class UsersTest extends AbstractUnitTestCase
     public function testUsersThrowsRuntimeException(): void
     {
         $error = new class {
+            // phpcs:disable
             public function get_error_message(): string
             {
                 return 'error';
             }
+            // phpcs:enable
         };
 
         \WP_Mock::userFunction('wp_remote_request', [

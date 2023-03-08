@@ -1,6 +1,10 @@
-<?php # -*- coding: utf-8 -*-
+<?php
 
-namespace PHPUnit\Unit\FrontEnd;
+# -*- coding: utf-8 -*-
+
+declare(strict_types=1);
+
+namespace WpUserListingTable\PHPUnit\Unit\FrontEnd;
 
 use WpUserListingTable\FrontEnd\Loader;
 use WpUserListingTable\PHPUnit\Unit\AbstractUnitTestCase;

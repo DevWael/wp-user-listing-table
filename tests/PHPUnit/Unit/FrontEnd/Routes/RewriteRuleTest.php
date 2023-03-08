@@ -1,6 +1,10 @@
-<?php # -*- coding: utf-8 -*-
+<?php
 
-namespace PHPUnit\Unit\FrontEnd\Routes;
+# -*- coding: utf-8 -*-
+
+declare(strict_types=1);
+
+namespace WpUserListingTable\PHPUnit\Unit\FrontEnd\Routes;
 
 use WpUserListingTable\FrontEnd\Routes\RewriteRule;
 use WpUserListingTable\FrontEnd\Routes\Templates\UsersTableTemplate;
@@ -33,7 +37,10 @@ class RewriteRuleTest extends AbstractUnitTestCase
         $wp_query = new \stdClass();
         $wp_query->is_home = true;
 
-        \WP_Mock::userFunction('get_query_var')->once()->with('table_template')->andReturn('user-listing-table');
+        \WP_Mock::userFunction('get_query_var')
+            ->once()
+            ->with('table_template')
+            ->andReturn('user-listing-table');
 
         $template = \Mockery::mock(UsersTableTemplate::class);
         $template->shouldReceive('templatePath')->andReturn('/templates/users-table.php');
@@ -58,7 +65,7 @@ class RewriteRuleTest extends AbstractUnitTestCase
         ]);
 
         $view = new RewriteRule();
-        $this->assertStringContainsString('test',$view->loadTemplate('test'));
+        $this->assertStringContainsString('test', $view->loadTemplate('test'));
     }
 
     /**
@@ -95,10 +102,13 @@ class RewriteRuleTest extends AbstractUnitTestCase
     {
         \WP_Mock::userFunction('add_rewrite_rule');
         \WP_Mock::userFunction('update_option');
-        $template = \Mockery::mock( UsersTableTemplate::class );
-        $template->shouldReceive('templateRegex')->andReturn('user-listing-table');
-        $template->shouldReceive('templateQuery')->andReturn('index.php?table_template=user-listing-table');
-        $template->shouldReceive('templatePath')->andReturn('users-table.php');
+        $template = \Mockery::mock(UsersTableTemplate::class);
+        $template->shouldReceive('templateRegex')
+            ->andReturn('user-listing-table');
+        $template->shouldReceive('templateQuery')
+            ->andReturn('index.php?table_template=user-listing-table');
+        $template->shouldReceive('templatePath')
+            ->andReturn('users-table.php');
 
         $rewriteRule = new RewriteRule($template);
         \WP_Mock::expectAction(
@@ -118,10 +128,12 @@ class RewriteRuleTest extends AbstractUnitTestCase
      */
     public function testTitlePartsHasTitleKey(): void
     {
-        \WP_Mock::userFunction('get_query_var')->with('table_template')->andReturn('user-listing-table');
+        \WP_Mock::userFunction('get_query_var')
+            ->with('table_template')
+            ->andReturn('user-listing-table');
         $titleParts = [
             'link' => '',
-            'query' => ''
+            'query' => '',
         ];
         $rewriteRule = new RewriteRule();
         $result = $rewriteRule->templateTitle($titleParts);

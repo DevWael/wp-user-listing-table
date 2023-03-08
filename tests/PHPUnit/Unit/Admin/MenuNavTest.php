@@ -1,6 +1,10 @@
-<?php # -*- coding: utf-8 -*-
+<?php
 
-namespace PHPUnit\Unit\Admin;
+# -*- coding: utf-8 -*-
+
+declare(strict_types=1);
+
+namespace WpUserListingTable\PHPUnit\Unit\Admin;
 
 use WpUserListingTable\Admin\MenuNav;
 use WpUserListingTable\PHPUnit\Unit\AbstractUnitTestCase;
@@ -36,8 +40,8 @@ class MenuNavTest extends AbstractUnitTestCase
         $menuNav = new MenuNav();
         $menuNav->navMenuContent();
         $output = ob_get_clean();
-        $this->assertStringStartsWith('<div id="users-list-link"',$output);
-        $this->assertStringEndsWith('</div>',$output);
+        $this->assertStringStartsWith('<div id="users-list-link"', $output);
+        $this->assertStringEndsWith('</div>', $output);
     }
 
     /**
@@ -48,7 +52,7 @@ class MenuNavTest extends AbstractUnitTestCase
     public function testInit(): void
     {
         $menuNav = new MenuNav();
-        \WP_Mock::expectActionAdded('admin_init',[$menuNav,'navMenuMetaBox']);
+        \WP_Mock::expectActionAdded('admin_init', [$menuNav, 'navMenuMetaBox']);
         $menuNav->init();
         \WP_Mock::assertActionsCalled();
     }
