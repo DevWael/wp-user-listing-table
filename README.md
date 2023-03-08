@@ -81,7 +81,7 @@ The cache expiration is 1 Hour, and it can be modified using a filter.
 
 ### Cache System
 
-Although the WordPress introduces the `wp_cache_*()` functions, the plugin caching system is relying on the WordPress transients API because of the following cons:
+Although the WordPress introduces the `wp_cache_*()` functions, the plugin caching system is relying on the WordPress transients API because of the following pros:
 1. The transients are always available and using `options` MySQL table.
 2. If there are any persistent cache plugin installed, transients will use it instead of MySQL.
 
@@ -133,7 +133,7 @@ To run the PHPCS test, use the following command:
 The PHPUnit configuration file contains the following main configurations:
 1. It will test only the `plugin/src` directory.
 2. The test reports will be generated into `plugin/coverage` directory.
-3. To generate the reports, you will need to install PHP x debug.
+3. To generate the reports, you will need to install PHP [Xdebug](https://xdebug.org/docs/install).
 
 ### PHPUnit Test Cases
 
@@ -142,7 +142,7 @@ PHPUnit tests can be run using the following commands:
 - `composer tests:no-cov` or `vendor/bin/phpunit --no-coverage`  this command will run all test cases without generating the reports.
 - `composer tests:codecov` this command will run all test cases and generate a report XML file for automated testing using GitHub actions.
 
-The PHPUnit tests is replying on [WP_Mock](https://github.com/10up/wp_mock) to mock the WordPress functions and make it possible to run the tests without loading WordPress core.
+The PHPUnit tests is relying on [WP_Mock](https://github.com/10up/wp_mock) to mock the WordPress functions and make it possible to run the tests without loading WordPress core.
 
 ## Composer Scripts
 
